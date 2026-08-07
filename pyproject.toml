@@ -1,0 +1,10 @@
+[project]
+name = "fortbo-bench"
+version = "0.1.0"
+description = "Correctness-gated FortBO Bayesian optimization benchmarks"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
