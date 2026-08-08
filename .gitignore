@@ -1,0 +1,7 @@
+# Downloaded reference material. Fetched by scripts/fetch_provenance.py,
+# never committed: it is third-party, often large, and licensed separately.
+provenance/
+
+__pycache__/
+*.egg-info/
+.venv/
