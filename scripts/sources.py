@@ -158,6 +158,21 @@ PAPERS: tuple[Paper, ...] = (
         ),
         consumed_by=("fortbo/src/fortbo_fortml_sparse.f90",),
     ),
+    Paper(
+        key="snoek-practical",
+        arxiv_id="1206.2944",
+        title="Practical Bayesian Optimization of Machine Learning Algorithms",
+        needed_for=(
+            "The integrated acquisition function: marginalizing GP "
+            "hyperparameters by slice sampling rather than using a point "
+            "estimate, and why the plug-in estimate is overconfident early in "
+            "a run when the hyperparameters are least determined."
+        ),
+        consumed_by=(
+            "fortbo/src/fortbo_integrated.f90",
+            "fortmc/src/fortmc_slice.f90",
+        ),
+    ),
     # Heteroscedastic GP regression (Lazaro-Gredilla and Titsias, ICML 2011)
     # has no arXiv posting, so it cannot be fetched here. Recorded rather than
     # replaced with a guessed identifier: an arXiv id that resolves to *some*
