@@ -5,6 +5,27 @@ Bayesian-optimization policies. Every row identifies the FortBO and surrogate
 revisions, compiler, precision, hardware, seed, initialization design,
 restart count, acquisition optimizer, stopping rule, and independent oracle.
 
+## Complete FortBO feature matrix
+
+The release matrix covers every source module, not only the headline TuRBO and
+analytic-acquisition examples. The machine-readable inventory is
+[`feature_benchmark_matrix.json`](fixtures/feature_benchmark_matrix.json),
+with a flat reviewable export in
+[`feature_benchmark_matrix.csv`](results/feature_benchmark_matrix.csv). Run
+`python scripts/run_feature_matrix.py` after changing a FortBO module; it
+fails if a source module has no benchmark row and records unavailable external
+packages explicitly.
+
+Rows use one of three comparison contracts: `direct-external` is a matched
+value/timing lane against BoTorch or GPyTorch with an independent oracle;
+`external-policy` matches objective, budget, seed, and stopping rule against a
+published or BoTorch policy; `reference-only` and `contract-only` use a
+defining oracle, invariant, or typed refusal where no like-for-like competitor
+exists. The performance target is per lane, hardware, and revision: FortBO
+must meet or beat the named comparator after the correctness gate. A missing
+or non-comparable lane remains visible rather than being counted as a speed
+win.
+
 ## Work packages
 
 - [x] Create the MIT-licensed benchmark repository and provenance contract.

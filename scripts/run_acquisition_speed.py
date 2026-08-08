@@ -42,6 +42,7 @@ OUTPUT = ROOT / "fixtures" / "acquisition_speed.json"
 N_CANDIDATES = 4000
 N_TRAIN = 40
 N_SAMPLES = 128
+N_REPEATS = 5
 DIMENSION = 8
 LENGTHSCALE = 0.7
 SIGNAL_VARIANCE = 1.3
@@ -144,22 +145,32 @@ def run_botorch(x: np.ndarray, y: np.ndarray, candidates: np.ndarray) -> dict:
             rows[name] = {"unavailable": str(error)}
             return
         with torch.no_grad():
-            started = time.perf_counter()
             values = acquisition(query)
-            elapsed = time.perf_counter() - started
+            started = time.perf_counter()
+            for _ in range(N_REPEATS):
+                values = acquisition(query)
+            elapsed = (time.perf_counter() - started) / N_REPEATS
         rows[name] = {"seconds": elapsed, "value_sum": float(values.sum())}
 
     # The posterior alone, so an acquisition cost is not confused with it.
     with torch.no_grad():
-        started = time.perf_counter()
         posterior = model.posterior(query)
         _ = posterior.mean, posterior.variance
-        rows["posterior_moments"] = {"seconds": time.perf_counter() - started}
+        started = time.perf_counter()
+        for _ in range(N_REPEATS):
+            posterior = model.posterior(query)
+            _ = posterior.mean, posterior.variance
+        rows["posterior_moments"] = {
+            "seconds": (time.perf_counter() - started) / N_REPEATS}
 
     timed("ei", lambda: ExpectedImprovement(model, best_f=best))
     timed("log_ei", lambda: LogExpectedImprovement(model, best_f=best))
     timed("pi", lambda: ProbabilityOfImprovement(model, best_f=best))
-    timed("ucb", lambda: UpperConfidenceBound(model, beta=2.0))
+    # FortBO names the coefficient on sigma `beta`; BoTorch names the
+    # coefficient on sigma^2 `beta` and evaluates sqrt(beta)*sigma.  beta=4
+    # is therefore the same beta=2.0 lower-confidence bound after the
+    # minimization objective is negated into BoTorch's maximization convention.
+    timed("ucb", lambda: UpperConfidenceBound(model, beta=4.0))
     timed("mc_ei", lambda: qExpectedImprovement(model, best_f=best,
                                                 sampler=sampler))
     timed("mc_pi", lambda: qProbabilityOfImprovement(model, best_f=best,
@@ -198,14 +209,39 @@ def main() -> int:
                "fortbo_seconds": mine["seconds"],
                "fortbo_value_sum": mine.get("value_sum"),
                "fortbo_refused": mine.get("refused", False)}
+        if name == "mc_noisy_ei":
+            # FortBO's current routine exposes the marginal noisy-EI
+            # estimator with caller-supplied independent incumbent draws;
+            # BoTorch's qNEI uses the joint baseline/candidate posterior.
+            # Their timings answer different questions until FortBO exposes
+            # the joint baseline sampler, so retain the row but refuse a
+            # fabricated speedup.
+            row["comparison_status"] = "not_comparable_joint_semantics"
         if theirs and "unavailable" not in theirs:
             row["botorch_seconds"] = theirs["seconds"]
             row["botorch_value_sum"] = theirs.get("value_sum")
-            if mine["seconds"] > 0:
+            if mine["seconds"] > 0 and name != "mc_noisy_ei":
                 row["speedup"] = theirs["seconds"] / mine["seconds"]
+            if mine.get("value_sum") is not None and theirs.get("value_sum") is not None:
+                error = abs(mine["value_sum"] - theirs["value_sum"])
+                row["value_abs_error"] = error
+                row["value_relative_error"] = error / max(
+                    1.0, abs(theirs["value_sum"]))
+                if name in ("ei", "log_ei", "pi", "ucb"):
+                    row["value_status"] = (
+                        "pass" if row["value_relative_error"] <= 2.0e-6
+                        else "fail")
+                else:
+                    # Different seeded QMC streams are intentionally not
+                    # treated as a deterministic equality gate.  These rows
+                    # remain useful speed lanes, while the independent NumPy
+                    # fixture supplies the defining estimator oracle.
+                    row["value_status"] = "statistical"
             # A refusal is not a speed win; exclude it from the verdict and
             # say so, rather than counting a routine that did nothing.
-            if not row["fortbo_refused"] and "speedup" in row:
+            if (not row["fortbo_refused"] and "speedup" in row and
+                    row.get("comparison_status") != "not_comparable_joint_semantics" and
+                    row.get("value_status") != "fail"):
                 if row["speedup"] < 1.0:
                     slower.append((name, row["speedup"]))
         elif theirs:
@@ -220,7 +256,8 @@ def main() -> int:
             "alongside times; a refused routine is never counted as fast."
         ),
         "config": {"n_candidates": N_CANDIDATES, "n_train": N_TRAIN,
-                   "n_samples": N_SAMPLES, "dimension": DIMENSION},
+                   "n_samples": N_SAMPLES, "dimension": DIMENSION,
+                   "repeats": N_REPEATS},
         "rows": comparison,
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
@@ -246,6 +283,13 @@ def main() -> int:
         print("\nSLOWER THAN BOTORCH:")
         for name, factor in slower:
             print(f"  {name}: {1.0/factor:.2f}x slower")
+        return 1
+    failed_values = [row["acquisition"] for row in comparison
+                     if row.get("value_status") == "fail"]
+    if failed_values:
+        print("\nVALUE MISMATCH:")
+        for name in failed_values:
+            print(f"  {name}")
         return 1
     print("\nfortbo is at least as fast on every acquisition compared: YES")
     return 0

@@ -11,9 +11,9 @@
       "turbo1_value": 13.652794327914108,
       "turbom_value": 13.652794327914108,
       "random_value": 13.888652185145572,
-      "turbo1_seconds": 1.1671045300317928,
-      "turbom_seconds": 1.1617277879850008,
-      "random_seconds": 0.00029534701025113463
+      "turbo1_seconds": 0.9220501420204528,
+      "turbom_seconds": 0.9212466640165076,
+      "random_seconds": 0.000320824037771672
     },
     {
       "problem": "ackley",
@@ -24,9 +24,9 @@
       "turbo1_value": 12.372675440886148,
       "turbom_value": 12.372675440886148,
       "random_value": 13.659061432807128,
-      "turbo1_seconds": 5.496524252987001,
-      "turbom_seconds": 5.08077450300334,
-      "random_seconds": 0.0012317809741944075
+      "turbo1_seconds": 4.468642046034802,
+      "turbom_seconds": 4.477345374994911,
+      "random_seconds": 0.0012647620169445872
     },
     {
       "problem": "rover",
@@ -37,9 +37,9 @@
       "turbo1_value": 1331.053788414505,
       "turbom_value": 1190.9647946773205,
       "random_value": 1190.9647946773205,
-      "turbo1_seconds": 0.5411605690023862,
-      "turbom_seconds": 0.8571801920188591,
-      "random_seconds": 0.0005489340401254594
+      "turbo1_seconds": 0.5344773170072585,
+      "turbom_seconds": 0.7974197589792311,
+      "random_seconds": 0.0005287659587338567
     },
     {
       "problem": "rover",
@@ -50,9 +50,9 @@
       "turbo1_value": 865.5504483744259,
       "turbom_value": 806.6675774878743,
       "random_value": 1190.9647946773205,
-      "turbo1_seconds": 2.5307364750187844,
-      "turbom_seconds": 5.251108650001697,
-      "random_seconds": 0.0019931660499423742
+      "turbo1_seconds": 2.4047163499635644,
+      "turbom_seconds": 5.004493101034313,
+      "random_seconds": 0.0019321399740874767
     },
     {
       "problem": "push",
@@ -63,16 +63,16 @@
       "turbo1_value": -3.3674730502376358,
       "turbom_value": -2.7312491421925715,
       "random_value": -1.6260205011954172,
-      "turbo1_seconds": 0.49760090897325426,
-      "turbom_seconds": 0.799935543036554,
-      "random_seconds": 0.008469770022202283
+      "turbo1_seconds": 0.43510619702283293,
+      "turbom_seconds": 0.6911135700065643,
+      "random_seconds": 0.008272512990515679
     }
   ],
   "ackley200_cross_implementation": [
     {
       "budget": 16,
       "n_initial": 5,
-      "fortbo_seconds": 1.1671045300317928,
+      "fortbo_seconds": 0.9220501420204528,
       "fortbo_value": 13.652794327914108,
       "uber_research_seconds": 28.307977807999123,
       "uber_research_value": 13.690164775266926,
@@ -81,14 +81,14 @@
       "verdicts": [
         {
           "against": "uber_research",
-          "speedup": 24.254877844770245,
+          "speedup": 30.70112623806873,
           "accuracy_comparable": true,
           "at_least_as_fast": true,
           "claim_supported": true
         },
         {
           "against": "botorch",
-          "speedup": 11.959115719989102,
+          "speedup": 15.13750445435548,
           "accuracy_comparable": true,
           "at_least_as_fast": true,
           "claim_supported": true
@@ -98,7 +98,7 @@
     {
       "budget": 60,
       "n_initial": 10,
-      "fortbo_seconds": 5.496524252987001,
+      "fortbo_seconds": 4.468642046034802,
       "fortbo_value": 12.372675440886148,
       "uber_research_seconds": 66.15891531395027,
       "uber_research_value": 12.561403609073704,
@@ -107,14 +107,14 @@
       "verdicts": [
         {
           "against": "uber_research",
-          "speedup": 12.036500207926352,
+          "speedup": 14.805149893949467,
           "accuracy_comparable": true,
           "at_least_as_fast": true,
           "claim_supported": true
         },
         {
           "against": "botorch",
-          "speedup": 8.249564033191277,
+          "speedup": 10.147138284490818,
           "accuracy_comparable": true,
           "at_least_as_fast": true,
           "claim_supported": true

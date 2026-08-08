@@ -4,80 +4,102 @@
     "n_candidates": 4000,
     "n_train": 40,
     "n_samples": 128,
-    "dimension": 8
+    "dimension": 8,
+    "repeats": 5
   },
   "rows": [
     {
       "acquisition": "posterior_moments",
-      "fortbo_seconds": 0.012344471004325897,
+      "fortbo_seconds": 0.006251566403079778,
       "fortbo_value_sum": 1139.0308443582671,
       "fortbo_refused": false,
-      "botorch_seconds": 0.015749857993796468,
+      "botorch_seconds": 0.009379251394420862,
       "botorch_value_sum": null,
-      "speedup": 1.2758633390023124
+      "speedup": 1.5003042101256827
     },
     {
       "acquisition": "ei",
-      "fortbo_seconds": 0.007312208006624132,
+      "fortbo_seconds": 0.006501056591514498,
       "fortbo_value_sum": 4.783563051043403,
       "fortbo_refused": false,
-      "botorch_seconds": 0.010011604987084866,
+      "botorch_seconds": 0.009096743399277329,
       "botorch_value_sum": 4.783567956422084,
-      "speedup": 1.3691630459657806
+      "speedup": 1.3992715293619888,
+      "value_abs_error": 4.90537868103047e-06,
+      "value_relative_error": 1.0254644076802235e-06,
+      "value_status": "pass"
     },
     {
       "acquisition": "log_ei",
-      "fortbo_seconds": 0.006685006956104189,
+      "fortbo_seconds": 0.006272061204072088,
       "fortbo_value_sum": -389889.3861374396,
       "fortbo_refused": false,
-      "botorch_seconds": 0.011669920000713319,
+      "botorch_seconds": 0.00971777900122106,
       "botorch_value_sum": -389889.3462328318,
-      "speedup": 1.745685543387105
+      "speedup": 1.5493756653573256,
+      "value_abs_error": 0.03990460775094107,
+      "value_relative_error": 1.0234854616189247e-07,
+      "value_status": "pass"
     },
     {
       "acquisition": "pi",
-      "fortbo_seconds": 0.007100440037902445,
+      "fortbo_seconds": 0.006798112008254975,
       "fortbo_value_sum": 20.81075447930825,
       "fortbo_refused": false,
-      "botorch_seconds": 0.009822288004215807,
+      "botorch_seconds": 0.00904812979279086,
       "botorch_value_sum": 20.810772108437373,
-      "speedup": 1.383335110469777
+      "speedup": 1.3309768626647631,
+      "value_abs_error": 1.7629129121843334e-05,
+      "value_relative_error": 8.471155721654317e-07,
+      "value_status": "pass"
     },
     {
       "acquisition": "ucb",
-      "fortbo_seconds": 0.006655501027125865,
+      "fortbo_seconds": 0.006304969196207821,
       "fortbo_value_sum": 2708.114262737142,
       "fortbo_refused": false,
-      "botorch_seconds": 0.009597694966942072,
-      "botorch_value_sum": 1581.3115585185583,
-      "speedup": 1.4420694892577868
+      "botorch_seconds": 0.008925091999117285,
+      "botorch_value_sum": 2708.1142762403397,
+      "speedup": 1.4155647270228313,
+      "value_abs_error": 1.3503197806130629e-05,
+      "value_relative_error": 4.986199409899735e-09,
+      "value_status": "pass"
     },
     {
       "acquisition": "mc_ei",
-      "fortbo_seconds": 0.010973087046295404,
+      "fortbo_seconds": 0.008163543802220374,
       "fortbo_value_sum": 4.812908223634736,
       "fortbo_refused": false,
-      "botorch_seconds": 0.01590375800151378,
+      "botorch_seconds": 0.010351484594866633,
       "botorch_value_sum": 4.733510447797613,
-      "speedup": 1.44934218915934
+      "speedup": 1.2680136036081742,
+      "value_abs_error": 0.07939777583712271,
+      "value_relative_error": 0.01677355035184607,
+      "value_status": "statistical"
     },
     {
       "acquisition": "mc_pi",
-      "fortbo_seconds": 0.008656210964545608,
+      "fortbo_seconds": 0.007479920191690326,
       "fortbo_value_sum": 20.6015625,
       "fortbo_refused": false,
-      "botorch_seconds": 0.009601022000424564,
+      "botorch_seconds": 0.011270469590090215,
       "botorch_value_sum": 21.01247305609691,
-      "speedup": 1.109148337505722
+      "speedup": 1.5067633479045575,
+      "value_abs_error": 0.4109105560969084,
+      "value_relative_error": 0.019555554217721174,
+      "value_status": "statistical"
     },
     {
       "acquisition": "mc_noisy_ei",
-      "fortbo_seconds": 4.829023964703083e-06,
-      "fortbo_value_sum": 0.0,
-      "fortbo_refused": true,
-      "botorch_seconds": 0.014814195048529655,
+      "fortbo_seconds": 0.008704280003439636,
+      "fortbo_value_sum": 6.201760072902052,
+      "fortbo_refused": false,
+      "comparison_status": "not_comparable_joint_semantics",
+      "botorch_seconds": 0.013356654602102936,
       "botorch_value_sum": 5.434228797385392,
-      "speedup": 3067.7410501193317
+      "value_abs_error": 0.7675312755166592,
+      "value_relative_error": 0.14124014724701078,
+      "value_status": "statistical"
     }
   ]
 }

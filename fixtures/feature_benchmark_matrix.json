@@ -1,0 +1,626 @@
+{
+  "schema": 1,
+  "objective": "complete FortBO feature benchmark coverage",
+  "fortbo_revision": null,
+  "matrix_status": "pass",
+  "rows": [
+    {
+      "module": "fortbo",
+      "feature": "public package surface",
+      "source": "../fortbo/src/fortbo.f90",
+      "comparability": "contract-only",
+      "external": [],
+      "oracle": "independent integration and replay suite",
+      "benchmark_command": "fo test --all",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_acquisition",
+      "feature": "EI, logEI, PI, lower confidence bound",
+      "source": "../fortbo/src/fortbo_acquisition.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "EI",
+          "module": "botorch.acquisition.analytic",
+          "symbol": "ExpectedImprovement",
+          "available": true,
+          "reason": ""
+        },
+        {
+          "label": "logEI",
+          "module": "botorch.acquisition.analytic",
+          "symbol": "LogExpectedImprovement",
+          "available": true,
+          "reason": ""
+        },
+        {
+          "label": "PI",
+          "module": "botorch.acquisition.analytic",
+          "symbol": "ProbabilityOfImprovement",
+          "available": true,
+          "reason": ""
+        },
+        {
+          "label": "UCB",
+          "module": "botorch.acquisition.analytic",
+          "symbol": "UpperConfidenceBound",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "NumPy definitions plus BoTorch analytic values",
+      "benchmark_command": "python scripts/run_acquisition_speed.py",
+      "performance_target": "FortBO wall time <= BoTorch after value gate",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_active",
+      "feature": "variance, straddle, and level-set active learning",
+      "source": "../fortbo/src/fortbo_active.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "direct NumPy variance and classification definitions",
+      "benchmark_command": "python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_batch",
+      "feature": "qEI, qNEI, qUCB",
+      "source": "../fortbo/src/fortbo_batch.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "qEI",
+          "module": "botorch.acquisition.monte_carlo",
+          "symbol": "qExpectedImprovement",
+          "available": true,
+          "reason": ""
+        },
+        {
+          "label": "qNEI",
+          "module": "botorch.acquisition.monte_carlo",
+          "symbol": "qNoisyExpectedImprovement",
+          "available": true,
+          "reason": ""
+        },
+        {
+          "label": "qUCB",
+          "module": "botorch.acquisition.monte_carlo",
+          "symbol": "qUpperConfidenceBound",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "frozen joint-draw order-statistic oracle plus BoTorch q-acquisitions",
+      "benchmark_command": "python scripts/run_batch_comparison.py",
+      "performance_target": "FortBO wall time <= BoTorch after Monte Carlo tolerance gate",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_benchmarks",
+      "feature": "analytic objective functions and gradients",
+      "source": "../fortbo/src/fortbo_benchmarks.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "known optima, dense/local scans, and independent Richardson gradients",
+      "benchmark_command": "python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_constrained",
+      "feature": "feasibility-weighted and cost-aware acquisition",
+      "source": "../fortbo/src/fortbo_constrained.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "constraint objective",
+          "module": "botorch.acquisition.objective",
+          "symbol": "ConstrainedMCObjective",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "independent constrained-acquisition definition and BoTorch constraint objective",
+      "benchmark_command": "python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_device",
+      "feature": "resident CPU/OpenACC candidate scoring and reduction",
+      "source": "../fortbo/src/fortbo_device.f90",
+      "comparability": "device-contract",
+      "external": [],
+      "oracle": "bit-identical host/device result, repeated-launch determinism, typed refusal",
+      "benchmark_command": "fo test test_device",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_dturbo",
+      "feature": "derivative-enabled TuRBO modes 0, 1, and 2",
+      "source": "../fortbo/src/fortbo_dturbo.f90",
+      "comparability": "external-policy",
+      "external": [
+        {
+          "label": "BoTorch trust-region baseline",
+          "module": "botorch.generation.sampling",
+          "symbol": "ConstrainedMaxPosteriorSampling",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "known-function regret, derivative oracle, ratio/trace invariants",
+      "benchmark_command": "fo test --all; python scripts/run_speed_comparison.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_entropy",
+      "feature": "max-value entropy search",
+      "source": "../fortbo/src/fortbo_entropy.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "qMES",
+          "module": "botorch.acquisition.max_value_entropy_search",
+          "symbol": "qMaxValueEntropy",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "numerical entropy integral plus BoTorch qMES",
+      "benchmark_command": "python scripts/run_entropy_comparison.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_feasible",
+      "feature": "feasibility filtering and incumbent bookkeeping",
+      "source": "../fortbo/src/fortbo_feasible.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "brute-force feasible scan and failure/unknown separation",
+      "benchmark_command": "fo test test_feasible; python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_fixtures",
+      "feature": "constrained and multi-objective benchmark fixtures",
+      "source": "../fortbo/src/fortbo_fixtures.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "known feasible optima and analytic ZDT fronts",
+      "benchmark_command": "fo test test_fixtures; python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_fortml",
+      "feature": "exact and derivative-observation GP adapters",
+      "source": "../fortbo/src/fortbo_fortml.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "SingleTaskGP",
+          "module": "botorch.models",
+          "symbol": "SingleTaskGP",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "independent augmented covariance GP plus GPyTorch/BoTorch posterior",
+      "benchmark_command": "fo test test_fortml_adapter test_cross_framework; python scripts/emit_reference.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_fortml_sparse",
+      "feature": "sparse and variational GP adapters",
+      "source": "../fortbo/src/fortbo_fortml_sparse.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "VariationalGP",
+          "module": "botorch.models.approximate_gp",
+          "symbol": "SingleTaskVariationalGP",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "inducing-point NumPy posterior and GPyTorch variational contract",
+      "benchmark_command": "fo test test_fortml_sparse; python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_generated",
+      "feature": "generated acquisition leaves",
+      "source": "../fortbo/src/fortbo_generated.f90",
+      "comparability": "generator-contract",
+      "external": [],
+      "oracle": "independent quadrature and finite-difference gates",
+      "benchmark_command": "fo test test_generated_kernels test_acquisition",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_history",
+      "feature": "observations, gradients, duplicates, checkpoint/resume",
+      "source": "../fortbo/src/fortbo_history.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "restored-state replay and brute-force incumbent reconstruction",
+      "benchmark_command": "fo test test_history test_workers",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_integrated",
+      "feature": "integrated and risk-sensitive acquisition helpers",
+      "source": "../fortbo/src/fortbo_integrated.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "independent quadrature/Monte Carlo utility definitions",
+      "benchmark_command": "fo test test_integrated test_risk",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_knowledge_gradient",
+      "feature": "sequential and batch knowledge gradient",
+      "source": "../fortbo/src/fortbo_knowledge_gradient.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "qKG",
+          "module": "botorch.acquisition.knowledge_gradient",
+          "symbol": "qKnowledgeGradient",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "independent envelope/Monte Carlo oracle plus BoTorch qKG",
+      "benchmark_command": "python scripts/run_kg_comparison.py",
+      "performance_target": "FortBO wall time <= BoTorch after value gate",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_linear_posterior",
+      "feature": "linear posterior contract",
+      "source": "../fortbo/src/fortbo_linear_posterior.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "explicit affine posterior moments and samples",
+      "benchmark_command": "fo test test_linear_posterior",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_metrics",
+      "feature": "regret, feasibility, hypervolume, cost, memory, transfers",
+      "source": "../fortbo/src/fortbo_metrics.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "independent metric identities and charged failed evaluations",
+      "benchmark_command": "fo test test_metrics; python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_mixed",
+      "feature": "mixed continuous/integer/categorical policies",
+      "source": "../fortbo/src/fortbo_mixed.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "decode/rounding invariants and brute-force finite domain",
+      "benchmark_command": "fo test test_mixed test_space",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_monte_carlo",
+      "feature": "marginal EI, PI, NEI, CRN, antithetic gradients",
+      "source": "../fortbo/src/fortbo_monte_carlo.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "qEI",
+          "module": "botorch.acquisition.monte_carlo",
+          "symbol": "qExpectedImprovement",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "frozen NumPy draws and estimator standard-error tolerance",
+      "benchmark_command": "fo test test_monte_carlo; python scripts/run_acquisition_speed.py",
+      "performance_target": "FortBO wall time <= BoTorch for matched q=1 estimators",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_normal",
+      "feature": "stable Gaussian PDF/CDF and tail branches",
+      "source": "../fortbo/src/fortbo_normal.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "mpmath/Simpson normal integrals and tail identities",
+      "benchmark_command": "fo test test_acquisition test_entropy",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_optimize",
+      "feature": "candidate optimization and refusal boundaries",
+      "source": "../fortbo/src/fortbo_optimize.f90",
+      "comparability": "external-policy",
+      "external": [],
+      "oracle": "known constrained minima and independent objective evaluations",
+      "benchmark_command": "fo test test_optimize test_end_to_end",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_ordering_bench",
+      "feature": "recorded TuRBO ordering lanes",
+      "source": "../fortbo/src/fortbo_ordering_bench.f90",
+      "comparability": "external-policy",
+      "external": [],
+      "oracle": "pinned deterministic traces and objective-order oracle",
+      "benchmark_command": "python scripts/record_fortbo_ordering.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_pareto",
+      "feature": "Pareto archive and hypervolume",
+      "source": "../fortbo/src/fortbo_pareto.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "qNEHVI",
+          "module": "botorch.acquisition.multi_objective.monte_carlo",
+          "symbol": "qNoisyExpectedHypervolumeImprovement",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "brute-force dominance/hypervolume plus BoTorch qNEHVI",
+      "benchmark_command": "python scripts/run_multiobjective_comparison.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_pes",
+      "feature": "predictive entropy search C1/C2/C3",
+      "source": "../fortbo/src/fortbo_pes.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "qPES",
+          "module": "botorch.acquisition.predictive_entropy_search",
+          "symbol": "qPredictiveEntropySearch",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "paper-definition quadrature/EP constraints plus BoTorch qPES",
+      "benchmark_command": "python scripts/run_pes_comparison.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_placement",
+      "feature": "derivative-bearing device placement refusals",
+      "source": "../fortbo/src/fortbo_placement.f90",
+      "comparability": "device-contract",
+      "external": [],
+      "oracle": "capability matrix and named refusal reasons",
+      "benchmark_command": "fo test test_placement",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_posterior",
+      "feature": "versioned posterior capability contract",
+      "source": "../fortbo/src/fortbo_posterior.f90",
+      "comparability": "contract-only",
+      "external": [],
+      "oracle": "independent scalar normal and two-by-two covariance oracle",
+      "benchmark_command": "fo test test_posterior_contract",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_preference",
+      "feature": "preference/dueling BO utilities",
+      "source": "../fortbo/src/fortbo_preference.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "pairwise probability and utility-order oracle",
+      "benchmark_command": "fo test test_preference",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_provenance",
+      "feature": "CPU, transfer-inclusive, resident, refusal provenance",
+      "source": "../fortbo/src/fortbo_provenance.f90",
+      "comparability": "contract-only",
+      "external": [],
+      "oracle": "schema validation and no-zero-for-refusal invariant",
+      "benchmark_command": "fo test test_provenance",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_push",
+      "feature": "push-based asynchronous evaluations",
+      "source": "../fortbo/src/fortbo_push.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "event-order replay and failed-attempt accounting",
+      "benchmark_command": "fo test test_push test_workers",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_quadratic",
+      "feature": "DTuRBO bound-constrained quadratic subproblem",
+      "source": "../fortbo/src/fortbo_quadratic.f90",
+      "comparability": "external-policy",
+      "external": [],
+      "oracle": "enumerated active-set solution and KKT residual",
+      "benchmark_command": "fo test test_quadratic test_dturbo_modes",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_risk",
+      "feature": "VaR, CVaR, multi-fidelity/risk utilities",
+      "source": "../fortbo/src/fortbo_risk.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "normal-tail formulas and frozen empirical quantiles",
+      "benchmark_command": "fo test test_risk",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_rover",
+      "feature": "Rover-60 benchmark objective",
+      "source": "../fortbo/src/fortbo_rover.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "deterministic path-cost oracle and recorded ordering trace",
+      "benchmark_command": "fo test test_rover; python scripts/run_speed_comparison.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_space",
+      "feature": "continuous, integer, categorical, conditional spaces",
+      "source": "../fortbo/src/fortbo_space.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "round-trip/decode invariants and exhaustive finite-domain scan",
+      "benchmark_command": "fo test test_space test_mixed",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_stopping",
+      "feature": "budget, target, stall, uncertainty, cost, wall-time rules",
+      "source": "../fortbo/src/fortbo_stopping.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "boundary truth table and priority-order oracle",
+      "benchmark_command": "fo test test_stopping",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_structured",
+      "feature": "structured/multi-output posterior helpers",
+      "source": "../fortbo/src/fortbo_structured.f90",
+      "comparability": "direct-external",
+      "external": [],
+      "oracle": "independent output-wise posterior and covariance oracle",
+      "benchmark_command": "fo test test_structured; python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_thompson",
+      "feature": "joint posterior Thompson batches",
+      "source": "../fortbo/src/fortbo_thompson.f90",
+      "comparability": "direct-external",
+      "external": [
+        {
+          "label": "qPosteriorSampling",
+          "module": "botorch.generation.sampling",
+          "symbol": "MaxPosteriorSampling",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "frozen joint draws and without-replacement arg-min oracle",
+      "benchmark_command": "fo test test_thompson; python scripts/run_thompson_comparison.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_trace",
+      "feature": "TuRBO/DTuRBO trace and ratio diagnostics",
+      "source": "../fortbo/src/fortbo_trace.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "reconstructed radius/counter/ratio state transitions",
+      "benchmark_command": "fo test test_trace",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_trust_region",
+      "feature": "trust-region geometry, expansion, contraction, restart",
+      "source": "../fortbo/src/fortbo_trust_region.f90",
+      "comparability": "external-policy",
+      "external": [],
+      "oracle": "paper constants, bounded geometry, and trace transitions",
+      "benchmark_command": "fo test test_trust_region test_turbo",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_turbo",
+      "feature": "TuRBO-1, TuRBO-m, Thompson selection",
+      "source": "../fortbo/src/fortbo_turbo.f90",
+      "comparability": "external-policy",
+      "external": [
+        {
+          "label": "BoTorch sampling",
+          "module": "botorch.generation.sampling",
+          "symbol": "ConstrainedMaxPosteriorSampling",
+          "available": true,
+          "reason": ""
+        }
+      ],
+      "oracle": "known-function regret and Uber/BoTorch pinned baselines",
+      "benchmark_command": "python scripts/run_turbo_baselines.py scripts/run_botorch_turbo.py",
+      "performance_target": "FortBO regret no worse than the declared baseline at matched budget",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_turbo_driver",
+      "feature": "sequential/asynchronous TuRBO driver",
+      "source": "../fortbo/src/fortbo_turbo_driver.f90",
+      "comparability": "external-policy",
+      "external": [],
+      "oracle": "objective-count, restart, failure, and replay oracle",
+      "benchmark_command": "fo test test_turbo_driver test_end_to_end",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    },
+    {
+      "module": "fortbo_workers",
+      "feature": "asynchronous workers, pending fantasies, distributed replay",
+      "source": "../fortbo/src/fortbo_workers.f90",
+      "comparability": "reference-only",
+      "external": [],
+      "oracle": "deterministic event replay with charged failures",
+      "benchmark_command": "fo test test_workers; python scripts/run_benchmark.py",
+      "performance_target": "correctness and reproducibility",
+      "status": "ready"
+    }
+  ],
+  "summary": {
+    "features": 43,
+    "direct_or_external_policy": 19,
+    "reference_or_contract_only": 24,
+    "external_requirements_unavailable": 0
+  }
+}
