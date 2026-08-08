@@ -1,0 +1,20 @@
+category,name,status,value,oracle
+function,sphere,pass,3.0808333661980214e-10,Richardson-extrapolated central differences
+function,branin,pass,2.8799149731639773e-09,Richardson-extrapolated central differences
+function,hartmann3,pass,1.2401280002904969e-10,Richardson-extrapolated central differences
+function,hartmann6,pass,9.16571263331889e-11,Richardson-extrapolated central differences
+function,ackley,pass,5.745883768781823e-10,Richardson-extrapolated central differences
+function,rosenbrock,pass,1.790034002624452e-05,Richardson-extrapolated central differences
+function,levy,pass,5.5369699936136385e-09,Richardson-extrapolated central differences
+acquisition,ei,pass,0.09559783547728212,direct NumPy definitions with frozen draws
+derivative,derivative_gates,pass,5.929579049990252e-11,central differences of independent primal definitions
+surrogate,exact,pass,0.0,direct Cholesky GP
+surrogate,derivative-observation,pass,0.428065873279393,augmented value/gradient covariance block
+surrogate,sparse,pass,1.0458726939753868,inducing subset Cholesky GP
+surrogate,variational,pass,1.050999311952058,regularized inducing reference
+surrogate,multi-output,pass,0.0,independent output posteriors
+surrogate,fully-bayesian,pass,0.0680475097141194,parameter ensemble average
+device,cpu,measured,,
+device,openacc,refused,,device lane requires an explicit FortBO GPU run
+device,cuda-transfer-inclusive,refused,,device lane requires an explicit FortBO GPU run
+device,cuda-resident,refused,,device lane requires an explicit FortBO GPU run

@@ -11,9 +11,9 @@
       "turbo1_value": 13.652794327914108,
       "turbom_value": 13.652794327914108,
       "random_value": 13.888652185145572,
-      "turbo1_seconds": 0.9395857499912381,
-      "turbom_seconds": 0.9394362139864825,
-      "random_seconds": 0.000262153975199908
+      "turbo1_seconds": 1.1671045300317928,
+      "turbom_seconds": 1.1617277879850008,
+      "random_seconds": 0.00029534701025113463
     },
     {
       "problem": "ackley",
@@ -24,9 +24,9 @@
       "turbo1_value": 12.372675440886148,
       "turbom_value": 12.372675440886148,
       "random_value": 13.659061432807128,
-      "turbo1_seconds": 4.492989974969532,
-      "turbom_seconds": 4.473288023960777,
-      "random_seconds": 0.0009634359739720821
+      "turbo1_seconds": 5.496524252987001,
+      "turbom_seconds": 5.08077450300334,
+      "random_seconds": 0.0012317809741944075
     },
     {
       "problem": "rover",
@@ -37,9 +37,9 @@
       "turbo1_value": 1331.053788414505,
       "turbom_value": 1190.9647946773205,
       "random_value": 1190.9647946773205,
-      "turbo1_seconds": 0.47230522596510127,
-      "turbom_seconds": 0.7123748729936779,
-      "random_seconds": 0.0004104330437257886
+      "turbo1_seconds": 0.5411605690023862,
+      "turbom_seconds": 0.8571801920188591,
+      "random_seconds": 0.0005489340401254594
     },
     {
       "problem": "rover",
@@ -50,9 +50,9 @@
       "turbo1_value": 865.5504483744259,
       "turbom_value": 806.6675774878743,
       "random_value": 1190.9647946773205,
-      "turbo1_seconds": 2.3529998990125023,
-      "turbom_seconds": 4.612950267037377,
-      "random_seconds": 0.00148967799032107
+      "turbo1_seconds": 2.5307364750187844,
+      "turbom_seconds": 5.251108650001697,
+      "random_seconds": 0.0019931660499423742
     },
     {
       "problem": "push",
@@ -63,32 +63,32 @@
       "turbo1_value": -3.3674730502376358,
       "turbom_value": -2.7312491421925715,
       "random_value": -1.6260205011954172,
-      "turbo1_seconds": 0.3514316159998998,
-      "turbom_seconds": 0.4531005810131319,
-      "random_seconds": 0.006469485000707209
+      "turbo1_seconds": 0.49760090897325426,
+      "turbom_seconds": 0.799935543036554,
+      "random_seconds": 0.008469770022202283
     }
   ],
   "ackley200_cross_implementation": [
     {
       "budget": 16,
       "n_initial": 5,
-      "fortbo_seconds": 0.9395857499912381,
+      "fortbo_seconds": 1.1671045300317928,
       "fortbo_value": 13.652794327914108,
-      "uber_research_seconds": 17.68124965199968,
+      "uber_research_seconds": 28.307977807999123,
       "uber_research_value": 13.690164775266926,
-      "botorch_seconds": 11.732161760039162,
+      "botorch_seconds": 13.957538131973706,
       "botorch_value": 13.382520880397704,
       "verdicts": [
         {
           "against": "uber_research",
-          "speedup": 18.818133046573514,
+          "speedup": 24.254877844770245,
           "accuracy_comparable": true,
           "at_least_as_fast": true,
           "claim_supported": true
         },
         {
           "against": "botorch",
-          "speedup": 12.486525854770113,
+          "speedup": 11.959115719989102,
           "accuracy_comparable": true,
           "at_least_as_fast": true,
           "claim_supported": true
@@ -98,23 +98,23 @@
     {
       "budget": 60,
       "n_initial": 10,
-      "fortbo_seconds": 4.492989974969532,
+      "fortbo_seconds": 5.496524252987001,
       "fortbo_value": 12.372675440886148,
-      "uber_research_seconds": 67.44012044399278,
+      "uber_research_seconds": 66.15891531395027,
       "uber_research_value": 12.561403609073704,
-      "botorch_seconds": 55.10490309103625,
+      "botorch_seconds": 45.34392878500512,
       "botorch_value": 12.76972035797738,
       "verdicts": [
         {
           "against": "uber_research",
-          "speedup": 15.010075878135051,
+          "speedup": 12.036500207926352,
           "accuracy_comparable": true,
           "at_least_as_fast": true,
           "claim_supported": true
         },
         {
           "against": "botorch",
-          "speedup": 12.264639671583048,
+          "speedup": 8.249564033191277,
           "accuracy_comparable": true,
           "at_least_as_fast": true,
           "claim_supported": true

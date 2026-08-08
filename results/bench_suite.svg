@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420">
+<style>text{font:12px sans-serif}.axis{stroke:#333}</style>
+<line class="axis" x1="120" y1="300" x2="820" y2="300"/>
+<rect x="140.0" y="300.0" width="76.6" height="0.0" fill="#3568a8"/>
+<text x="140.0" y="318" transform="rotate(35 140.0 318)">sphere</text>
+<text x="140.0" y="295.0">3.08e-10</text>
+<rect x="228.6" y="300.0" width="76.6" height="0.0" fill="#3568a8"/>
+<text x="228.6" y="318" transform="rotate(35 228.6 318)">branin</text>
+<text x="228.6" y="295.0">2.88e-09</text>
+<rect x="317.1" y="300.0" width="76.6" height="0.0" fill="#3568a8"/>
+<text x="317.1" y="318" transform="rotate(35 317.1 318)">hartmann3</text>
+<text x="317.1" y="295.0">1.24e-10</text>
+<rect x="405.7" y="300.0" width="76.6" height="0.0" fill="#3568a8"/>
+<text x="405.7" y="318" transform="rotate(35 405.7 318)">hartmann6</text>
+<text x="405.7" y="295.0">9.17e-11</text>
+<rect x="494.3" y="300.0" width="76.6" height="0.0" fill="#3568a8"/>
+<text x="494.3" y="318" transform="rotate(35 494.3 318)">ackley</text>
+<text x="494.3" y="295.0">5.75e-10</text>
+<rect x="582.9" y="100.0" width="76.6" height="200.0" fill="#3568a8"/>
+<text x="582.9" y="318" transform="rotate(35 582.9 318)">rosenbrock</text>
+<text x="582.9" y="95.0">1.79e-05</text>
+<rect x="671.4" y="299.9" width="76.6" height="0.1" fill="#3568a8"/>
+<text x="671.4" y="318" transform="rotate(35 671.4 318)">levy</text>
+<text x="671.4" y="294.9">5.54e-09</text>
+<text x="15" y="20">Independent benchmark evidence</text></svg>

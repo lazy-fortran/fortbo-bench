@@ -11,6 +11,32 @@ efficiency is kept separate from raw execution throughput.
 The benchmark plan is in [`ROADMAP.md`](ROADMAP.md). All contents are MIT
 licensed.
 
+## Run the evidence suite
+
+The independent reference tests have no FortBO import and use direct NumPy
+definitions as their oracle:
+
+```
+python3 -m unittest discover -s tests -v
+python3 scripts/run_benchmark.py
+```
+
+The runner fails before publication if a value or derivative gate fails. A
+successful run writes `fixtures/bench_suite.json`, `results/bench_suite.csv`,
+and `results/bench_suite.svg`. CPU, OpenACC, transfer-inclusive CUDA, and
+resident CUDA are separate rows; an unavailable device is recorded as
+unavailable/refused with a reason, never as a zero-time host fallback.
+
+The surrogate rows are independent contract-level references for exact,
+derivative-observation, sparse, variational, multi-output, and fully Bayesian
+conditioning. When the sibling FortBO checkout is present, the runner also
+executes the exact, sparse, structured, integrated, device, metrics, and
+cross-framework FortBO tests. The comparison scripts below retain the pinned
+BoTorch/GPyTorch/JAX lanes and their provenance fixtures.
+
+Use `python3 scripts/run_benchmark.py --skip-fortbo` when only the independent
+benchmark repository is checked out.
+
 ## Provenance
 
 `scripts/fetch_provenance.py` downloads the papers and reference source trees

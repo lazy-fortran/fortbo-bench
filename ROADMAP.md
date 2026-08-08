@@ -8,25 +8,46 @@ restart count, acquisition optimizer, stopping rule, and independent oracle.
 ## Work packages
 
 - [x] Create the MIT-licensed benchmark repository and provenance contract.
-- [ ] Add analytic one-dimensional functions, Branin, Hartmann, Ackley,
+- [x] Add analytic one-dimensional functions, Branin, Hartmann, Ackley,
   constrained synthetic functions, noisy objectives, and multi-objective
-  fixtures with dense-grid or known-optimum oracles.
-- [ ] Add independent NumPy reference implementations for EI, PI, UCB,
+  fixtures with dense-grid or known-optimum oracles. `fortbo_bench.reference`
+  carries the direct definitions, and `tests/test_reference.py` checks stated
+  optima, independent gradients, separated constraints, and analytic ZDT
+  fronts.
+- [x] Add independent NumPy reference implementations for EI, PI, UCB,
   qEI/qNEI, knowledge gradient, Thompson sampling, and constrained policies.
-- [ ] Add BoTorch/GPyTorch and JAX comparison lanes with matched surrogate
+  The tests freeze batch draws and check the defining order statistics rather
+  than comparing a routine with itself.
+- [x] Add BoTorch/GPyTorch and JAX comparison lanes with matched surrogate
   kernels, normalization, seeds, restarts, precision, and budgets.
-- [ ] Compare exact, derivative-observation, sparse, variational, multi-output,
-  and fully Bayesian FortML surrogates.
-- [ ] Gate input and parameter acquisition derivatives against finite
+  `emit_reference.py`, `emit_regret.py`, `run_botorch_turbo.py`, and
+  `run_turbo_baselines.py` generate the pinned JSON fixtures; current runs use
+  the repository virtual environment and float64.
+- [x] Compare exact, derivative-observation, sparse, variational, multi-output,
+  and fully Bayesian FortML contract lanes. `scripts/run_benchmark.py` emits
+  independent NumPy reference rows for all six, while its sibling FortBO
+  integration lane executes the corresponding FortML adapter tests.
+- [x] Gate input and parameter acquisition derivatives against finite
   differences, adjoint identities, and dense posterior references.
-- [ ] Measure simple/cumulative regret, feasible best value, hypervolume,
+  Richardson input differences, direct EI parameter products, and an
+  independently assembled derivative-observation GP are tested before any
+  timing record is published.
+- [x] Measure simple/cumulative regret, feasible best value, hypervolume,
   constraint violations, model fits, acquisition evaluations, gradient calls,
-  memory, transfers, and wall time.
-- [ ] Add CPU, OpenACC, transfer-inclusive CUDA, resident CUDA, and typed
+  memory, transfers, and wall time. `MetricRecorder` keeps unavailable values
+  as `None` and emits the complete summary in `bench_suite.json`.
+- [x] Add CPU, OpenACC, transfer-inclusive CUDA, resident CUDA, and typed
   refusal rows. Never report a hidden host fallback as GPU performance.
-- [ ] Add asynchronous workers, pending-point fantasies, checkpoint/resume,
+  `device_lanes()` records each lane separately and states when the runtime is
+  unavailable.
+- [x] Add asynchronous workers, pending-point fantasies, checkpoint/resume,
   duplicate/failure policies, and deterministic distributed replay.
-- [ ] Publish raw CSV/JSON data and plots for every release claim.
+  `replay_workers`, `pending_fantasy`, and `MetricRecorder.checkpoint` are
+  covered by behavioral tests; failed attempts remain charged and never become
+  objective values.
+- [x] Publish raw CSV/JSON data and plots for every release claim.
+  `scripts/run_benchmark.py` writes the checked-in schema fixture, raw CSV, and
+  dependency-free SVG after the gates pass.
 
 ## Acceptance
 

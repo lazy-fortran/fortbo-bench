@@ -9,75 +9,75 @@
   "rows": [
     {
       "acquisition": "posterior_moments",
-      "fortbo_seconds": 0.0039139079744927585,
-      "fortbo_value_sum": 1139.0308443582692,
+      "fortbo_seconds": 0.012344471004325897,
+      "fortbo_value_sum": 1139.0308443582671,
       "fortbo_refused": false,
-      "botorch_seconds": 0.01585282402811572,
+      "botorch_seconds": 0.015749857993796468,
       "botorch_value_sum": null,
-      "speedup": 4.0503824135441615
+      "speedup": 1.2758633390023124
     },
     {
       "acquisition": "ei",
-      "fortbo_seconds": 0.0037559099728241563,
-      "fortbo_value_sum": 4.783563051043373,
+      "fortbo_seconds": 0.007312208006624132,
+      "fortbo_value_sum": 4.783563051043403,
       "fortbo_refused": false,
-      "botorch_seconds": 0.009894822956994176,
+      "botorch_seconds": 0.010011604987084866,
       "botorch_value_sum": 4.783567956422084,
-      "speedup": 2.6344675534259485
+      "speedup": 1.3691630459657806
     },
     {
       "acquisition": "log_ei",
-      "fortbo_seconds": 0.003275344963185489,
-      "fortbo_value_sum": -389889.38613743975,
+      "fortbo_seconds": 0.006685006956104189,
+      "fortbo_value_sum": -389889.3861374396,
       "fortbo_refused": false,
-      "botorch_seconds": 0.008345112029928714,
+      "botorch_seconds": 0.011669920000713319,
       "botorch_value_sum": -389889.3462328318,
-      "speedup": 2.5478574390566
+      "speedup": 1.745685543387105
     },
     {
       "acquisition": "pi",
-      "fortbo_seconds": 0.0033365500275976956,
-      "fortbo_value_sum": 20.810754479308134,
+      "fortbo_seconds": 0.007100440037902445,
+      "fortbo_value_sum": 20.81075447930825,
       "fortbo_refused": false,
-      "botorch_seconds": 0.008937267994042486,
+      "botorch_seconds": 0.009822288004215807,
       "botorch_value_sum": 20.810772108437373,
-      "speedup": 2.678595531348076
+      "speedup": 1.383335110469777
     },
     {
       "acquisition": "ucb",
-      "fortbo_seconds": 0.003216714016161859,
-      "fortbo_value_sum": 2708.114262737138,
+      "fortbo_seconds": 0.006655501027125865,
+      "fortbo_value_sum": 2708.114262737142,
       "fortbo_refused": false,
-      "botorch_seconds": 0.007360375020653009,
+      "botorch_seconds": 0.009597694966942072,
       "botorch_value_sum": 1581.3115585185583,
-      "speedup": 2.288165806370102
+      "speedup": 1.4420694892577868
     },
     {
       "acquisition": "mc_ei",
-      "fortbo_seconds": 0.003917614987585694,
-      "fortbo_value_sum": 4.81290822363471,
+      "fortbo_seconds": 0.010973087046295404,
+      "fortbo_value_sum": 4.812908223634736,
       "fortbo_refused": false,
-      "botorch_seconds": 0.010582157992757857,
+      "botorch_seconds": 0.01590375800151378,
       "botorch_value_sum": 4.733510447797613,
-      "speedup": 2.7011735523503595
+      "speedup": 1.44934218915934
     },
     {
       "acquisition": "mc_pi",
-      "fortbo_seconds": 0.0035418070037849247,
+      "fortbo_seconds": 0.008656210964545608,
       "fortbo_value_sum": 20.6015625,
       "fortbo_refused": false,
-      "botorch_seconds": 0.00876271800370887,
+      "botorch_seconds": 0.009601022000424564,
       "botorch_value_sum": 21.01247305609691,
-      "speedup": 2.474081166575327
+      "speedup": 1.109148337505722
     },
     {
       "acquisition": "mc_noisy_ei",
-      "fortbo_seconds": 1.101987436413765e-06,
+      "fortbo_seconds": 4.829023964703083e-06,
       "fortbo_value_sum": 0.0,
       "fortbo_refused": true,
-      "botorch_seconds": 0.012840396026149392,
+      "botorch_seconds": 0.014814195048529655,
       "botorch_value_sum": 5.434228797385392,
-      "speedup": 11652.034861609973
+      "speedup": 3067.7410501193317
     }
   ]
 }

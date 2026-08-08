@@ -10,7 +10,7 @@
       "turbo1": 865.5504483744259,
       "turbom": 806.6675774878743,
       "random": 1190.9647946773205,
-      "wall_seconds": 30.092513256997336,
+      "wall_seconds": 29.954258515965194,
       "command": "fo exec fortbo_bench_ordering rover 80 8 3 3"
     },
     {
@@ -22,7 +22,7 @@
       "turbo1": -3.3674730502376358,
       "turbom": -2.7312491421925715,
       "random": -1.6260205011954172,
-      "wall_seconds": 7.013006031978875,
+      "wall_seconds": 10.796313303988427,
       "command": "fo exec fortbo_bench_ordering push 90 10 3 3"
     },
     {
@@ -34,7 +34,7 @@
       "turbo1": 13.652794327914108,
       "turbom": 13.652794327914108,
       "random": 13.888652185145572,
-      "wall_seconds": 9.357433744007722,
+      "wall_seconds": 14.125977053015959,
       "command": "fo exec fortbo_bench_ordering ackley 16 5 1 3"
     }
   ]

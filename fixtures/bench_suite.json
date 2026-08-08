@@ -1,0 +1,485 @@
+{
+  "schema": 1,
+  "objective": "correctness-gated FortBO benchmark evidence",
+  "precision": "float64",
+  "functions": [
+    {
+      "name": "sphere",
+      "dimension": 2,
+      "optimum_value": 0.0,
+      "value_at_stated_optimum": 0.0,
+      "gradient_max_error": 3.0808333661980214e-10,
+      "oracle": "Richardson-extrapolated central differences",
+      "status": "pass"
+    },
+    {
+      "name": "branin",
+      "dimension": 2,
+      "optimum_value": 0.397887357729739,
+      "value_at_stated_optimum": 0.39788735772973816,
+      "gradient_max_error": 2.8799149731639773e-09,
+      "oracle": "Richardson-extrapolated central differences",
+      "status": "pass"
+    },
+    {
+      "name": "hartmann3",
+      "dimension": 3,
+      "optimum_value": -3.86278,
+      "value_at_stated_optimum": -3.8627797869493365,
+      "gradient_max_error": 1.2401280002904969e-10,
+      "oracle": "Richardson-extrapolated central differences",
+      "status": "pass"
+    },
+    {
+      "name": "hartmann6",
+      "dimension": 6,
+      "optimum_value": -3.32237,
+      "value_at_stated_optimum": -3.322368011391339,
+      "gradient_max_error": 9.16571263331889e-11,
+      "oracle": "Richardson-extrapolated central differences",
+      "status": "pass"
+    },
+    {
+      "name": "ackley",
+      "dimension": 8,
+      "optimum_value": 0.0,
+      "value_at_stated_optimum": 4.440892098500626e-16,
+      "gradient_max_error": 5.745883768781823e-10,
+      "oracle": "Richardson-extrapolated central differences",
+      "status": "pass"
+    },
+    {
+      "name": "rosenbrock",
+      "dimension": 8,
+      "optimum_value": 0.0,
+      "value_at_stated_optimum": 0.0,
+      "gradient_max_error": 1.790034002624452e-05,
+      "oracle": "Richardson-extrapolated central differences",
+      "status": "pass"
+    },
+    {
+      "name": "levy",
+      "dimension": 8,
+      "optimum_value": 0.0,
+      "value_at_stated_optimum": 1.4997597826618576e-32,
+      "gradient_max_error": 5.5369699936136385e-09,
+      "oracle": "Richardson-extrapolated central differences",
+      "status": "pass"
+    }
+  ],
+  "acquisitions": {
+    "name": "acquisition_reference",
+    "status": "pass",
+    "ei_sum": 0.09559783547728212,
+    "pi_sum": 0.8279775096969779,
+    "ucb_sum": -5.814898698424423,
+    "qei": 0.07708438960078579,
+    "qnei": 0.10282404536846855,
+    "kg": -0.47378895927482156,
+    "thompson_unique": 4,
+    "constrained_sum": 0.032838197503608224,
+    "ess": 7.636363636363638,
+    "oracle": "direct NumPy definitions with frozen draws"
+  },
+  "derivative_gates": {
+    "name": "derivative_gates",
+    "status": "pass",
+    "parameter_errors": {
+      "mean": 1.458144716082188e-11,
+      "sd": 3.902905776342891e-11,
+      "best": 1.458144716082188e-11,
+      "xi": 1.458144716082188e-11
+    },
+    "posterior_input_error": 5.929579049990252e-11,
+    "maximum_error": 5.929579049990252e-11,
+    "oracle": "central differences of independent primal definitions"
+  },
+  "surrogate_lanes": [
+    {
+      "name": "exact",
+      "status": "pass",
+      "mean_l2": 0.0,
+      "oracle": "direct Cholesky GP"
+    },
+    {
+      "name": "derivative-observation",
+      "status": "pass",
+      "mean_l2": 0.428065873279393,
+      "oracle": "augmented value/gradient covariance block"
+    },
+    {
+      "name": "sparse",
+      "status": "pass",
+      "mean_l2": 1.0458726939753868,
+      "oracle": "inducing subset Cholesky GP"
+    },
+    {
+      "name": "variational",
+      "status": "pass",
+      "mean_l2": 1.050999311952058,
+      "oracle": "regularized inducing reference"
+    },
+    {
+      "name": "multi-output",
+      "status": "pass",
+      "mean_l2": 0.0,
+      "outputs": 2,
+      "oracle": "independent output posteriors"
+    },
+    {
+      "name": "fully-bayesian",
+      "status": "pass",
+      "mean_l2": 0.0680475097141194,
+      "samples": 4,
+      "oracle": "parameter ensemble average"
+    }
+  ],
+  "metrics": {
+    "name": "metrics",
+    "status": "pass",
+    "summary": {
+      "rows": 13,
+      "measured": 12,
+      "refused": 1,
+      "best_feasible_value": 0.0,
+      "simple_regret": 0.0,
+      "cumulative_regret": 17.0,
+      "constraint_violations": 0,
+      "objective_evaluations": 12,
+      "acquisition_evaluations": 768,
+      "gradient_evaluations": 0,
+      "model_fits": 12,
+      "ess": [],
+      "memory_bytes": [
+        1024,
+        1024,
+        1024,
+        1024,
+        1024,
+        1024,
+        1024,
+        1024,
+        1024,
+        1024,
+        1024,
+        1024
+      ],
+      "transfers_bytes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "wall_seconds": 0.012
+    },
+    "rows": [
+      {
+        "evaluation": 0,
+        "objective_value": 4.9,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 1,
+        "objective_value": 3.6,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 2,
+        "objective_value": 2.5,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 3,
+        "objective_value": 1.6,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 4,
+        "objective_value": 0.9,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 5,
+        "objective_value": 0.4,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 6,
+        "objective_value": 0.1,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 7,
+        "objective_value": 0.0,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 8,
+        "objective_value": 0.1,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 9,
+        "objective_value": 0.4,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 10,
+        "objective_value": 0.9,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 11,
+        "objective_value": 1.6,
+        "feasible": true,
+        "constraint_violation": 0.0,
+        "cost": 1.0,
+        "acquisition_evaluations": 64,
+        "gradient_evaluations": 0,
+        "model_fits": 1,
+        "ess": null,
+        "memory_bytes": 1024,
+        "transfers_bytes": 0,
+        "wall_seconds": 0.001,
+        "lane": "cpu",
+        "status": "measured",
+        "refusal_reason": null
+      },
+      {
+        "evaluation": 12,
+        "objective_value": null,
+        "feasible": null,
+        "constraint_violation": null,
+        "cost": 3.0,
+        "acquisition_evaluations": 0,
+        "gradient_evaluations": 0,
+        "model_fits": 0,
+        "ess": null,
+        "memory_bytes": null,
+        "transfers_bytes": null,
+        "wall_seconds": null,
+        "lane": "cuda-resident",
+        "status": "refused",
+        "refusal_reason": "no NVIDIA runtime detected"
+      }
+    ]
+  },
+  "workers": {
+    "completed": [
+      {
+        "job": "job-b",
+        "value": 0.5,
+        "attempt": 1
+      },
+      {
+        "job": "job-a",
+        "value": 1.0,
+        "attempt": 2
+      }
+    ],
+    "failures": [
+      {
+        "job": "job-a",
+        "attempt": 1,
+        "cost": 2.0
+      }
+    ],
+    "duplicates": [],
+    "total_attempt_cost": 5.0
+  },
+  "device_lanes": [
+    {
+      "lane": "cpu",
+      "status": "measured",
+      "device": "host",
+      "toolchain": "numpy",
+      "timing_includes_transfers": false,
+      "reason": null
+    },
+    {
+      "lane": "openacc",
+      "status": "refused",
+      "device": "openacc-device",
+      "toolchain": "runtime not exercised",
+      "timing_includes_transfers": false,
+      "reason": "device lane requires an explicit FortBO GPU run"
+    },
+    {
+      "lane": "cuda-transfer-inclusive",
+      "status": "refused",
+      "device": "cuda",
+      "toolchain": "runtime not exercised",
+      "timing_includes_transfers": true,
+      "reason": "device lane requires an explicit FortBO GPU run"
+    },
+    {
+      "lane": "cuda-resident",
+      "status": "refused",
+      "device": "cuda",
+      "toolchain": "runtime not exercised",
+      "timing_includes_transfers": false,
+      "reason": "device lane requires an explicit FortBO GPU run"
+    }
+  ],
+  "fortbo_integration": [
+    {
+      "name": "fortbo-integration",
+      "status": "pass",
+      "tests": [
+        "test_benchmarks",
+        "test_fixtures",
+        "test_metrics",
+        "test_workers",
+        "test_device",
+        "test_fortml_adapter",
+        "test_fortml_sparse",
+        "test_structured",
+        "test_integrated",
+        "test_cross_framework"
+      ],
+      "wall_seconds": 6.4067424979875796,
+      "output_tail": "test_benchmarks                            PASS       0.01s\ntest_cross_framework                       PASS       0.00s\ntest_device                                PASS       0.00s\ntest_fixtures                              PASS       0.02s\ntest_fortml_adapter                        PASS       0.01s\ntest_fortml_sparse                         PASS       1.55s\ntest_integrated                            PASS       0.01s\ntest_metrics                               PASS       0.00s\ntest_structured                            PASS       0.00s\ntest_workers                               PASS       0.00s\nSummary: 10 passed, 0 failed, 0 skipped (  1.60s)\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo build [--------------------] 0/794 0%\nfo build [##################--] 734/794 92%\nfo build [####################] 794/794 100%\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo test [--------------------] 0/10 0%\nfo test [####################] 10/10 100%\nfo: found blas package: openblas\nfo: found blas package: openblas\n"
+    }
+  ],
+  "status": "pass"
+}
