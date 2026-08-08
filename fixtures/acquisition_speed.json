@@ -1,0 +1,83 @@
+{
+  "note": "Acquisition-level comparison on identical inputs, both sides constructing the training and candidate sets from the same closed forms rather than shipping arrays. Values are compared alongside times; a refused routine is never counted as fast.",
+  "config": {
+    "n_candidates": 4000,
+    "n_train": 40,
+    "n_samples": 128,
+    "dimension": 8
+  },
+  "rows": [
+    {
+      "acquisition": "posterior_moments",
+      "fortbo_seconds": 0.004103,
+      "fortbo_value_sum": 1139.0308443582692,
+      "fortbo_refused": false,
+      "botorch_seconds": 0.014475035015493631,
+      "botorch_value_sum": null,
+      "speedup": 3.527914944063766
+    },
+    {
+      "acquisition": "ei",
+      "fortbo_seconds": 0.0037619999999999997,
+      "fortbo_value_sum": 4.783563051043373,
+      "fortbo_refused": false,
+      "botorch_seconds": 0.009777383995242417,
+      "botorch_value_sum": 4.783567956422084,
+      "speedup": 2.598985644668373
+    },
+    {
+      "acquisition": "log_ei",
+      "fortbo_seconds": 0.0032189999999999996,
+      "fortbo_value_sum": -389889.38613743975,
+      "fortbo_refused": false,
+      "botorch_seconds": 0.008697888988535851,
+      "botorch_value_sum": -389889.3462328318,
+      "speedup": 2.7020469054165432
+    },
+    {
+      "acquisition": "pi",
+      "fortbo_seconds": 0.0032579999999999987,
+      "fortbo_value_sum": 20.810754479308134,
+      "fortbo_refused": false,
+      "botorch_seconds": 0.008881275018211454,
+      "botorch_value_sum": 20.810772108437373,
+      "speedup": 2.725989876676322
+    },
+    {
+      "acquisition": "ucb",
+      "fortbo_seconds": 0.003113000000000001,
+      "fortbo_value_sum": 2708.114262737138,
+      "fortbo_refused": false,
+      "botorch_seconds": 0.008263832016382366,
+      "botorch_value_sum": 1581.3115585185583,
+      "speedup": 2.6546199859885524
+    },
+    {
+      "acquisition": "mc_ei",
+      "fortbo_seconds": 0.003971000000000002,
+      "fortbo_value_sum": 4.81290822363471,
+      "fortbo_refused": false,
+      "botorch_seconds": 0.011220203014090657,
+      "botorch_value_sum": 4.733510447797613,
+      "speedup": 2.825535888715853
+    },
+    {
+      "acquisition": "mc_pi",
+      "fortbo_seconds": 0.003481000000000005,
+      "fortbo_value_sum": 20.6015625,
+      "fortbo_refused": false,
+      "botorch_seconds": 0.009112540981732309,
+      "botorch_value_sum": 21.01247305609691,
+      "speedup": 2.6177940194577123
+    },
+    {
+      "acquisition": "mc_noisy_ei",
+      "fortbo_seconds": 1.000000000001e-06,
+      "fortbo_value_sum": 0.0,
+      "fortbo_refused": true,
+      "botorch_seconds": 0.013202488014940172,
+      "botorch_value_sum": 5.434228797385392,
+      "speedup": 13202.488014926968
+    }
+  ]
+}
