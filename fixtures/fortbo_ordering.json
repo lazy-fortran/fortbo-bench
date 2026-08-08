@@ -1,0 +1,41 @@
+{
+  "note": "FortBO's own TuRBO results at budgets the test suite cannot run inside fo's five-minute slow-test cap. The suite asserts against these recorded numbers; regenerate with this script.",
+  "results": [
+    {
+      "problem": "rover",
+      "budget": 80,
+      "n_initial": 8,
+      "regions": 3,
+      "seeds": 3,
+      "turbo1": 865.5504483744259,
+      "turbom": 806.6675774878743,
+      "random": 1190.9647946773205,
+      "wall_seconds": 30.092513256997336,
+      "command": "fo exec fortbo_bench_ordering rover 80 8 3 3"
+    },
+    {
+      "problem": "push",
+      "budget": 90,
+      "n_initial": 10,
+      "regions": 3,
+      "seeds": 3,
+      "turbo1": -3.3674730502376358,
+      "turbom": -2.7312491421925715,
+      "random": -1.6260205011954172,
+      "wall_seconds": 7.013006031978875,
+      "command": "fo exec fortbo_bench_ordering push 90 10 3 3"
+    },
+    {
+      "problem": "ackley",
+      "budget": 16,
+      "n_initial": 5,
+      "regions": 1,
+      "seeds": 3,
+      "turbo1": 13.652794327914108,
+      "turbom": 13.652794327914108,
+      "random": 13.888652185145572,
+      "wall_seconds": 9.357433744007722,
+      "command": "fo exec fortbo_bench_ordering ackley 16 5 1 3"
+    }
+  ]
+}
