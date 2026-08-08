@@ -21,10 +21,12 @@ value/timing lane against BoTorch or GPyTorch with an independent oracle;
 `external-policy` matches objective, budget, seed, and stopping rule against a
 published or BoTorch policy; `reference-only` and `contract-only` use a
 defining oracle, invariant, or typed refusal where no like-for-like competitor
-exists. The performance target is per lane, hardware, and revision: FortBO
-must meet or beat the named comparator after the correctness gate. A missing
-or non-comparable lane remains visible rather than being counted as a speed
-win.
+exists. `oracle-plus-api` runs the Fortran contract and independent oracle and
+checks that a named external API exists, but records a typed refusal when the
+execution graphs are not semantically identical enough for a speed claim. The
+performance target is per lane, hardware, and revision: FortBO must meet or
+beat the named comparator after the correctness gate. A missing or
+non-comparable lane remains visible rather than being counted as a speed win.
 
 ## Work packages
 

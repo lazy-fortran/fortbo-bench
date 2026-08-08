@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "lane": "thompson",
+  "fortbo_revision": "b094bc1daa8b10eaee2ad5f8211cd7d09264fcff",
+  "tests": [
+    "test_thompson"
+  ],
+  "fortbo_status": "pass",
+  "fortbo_test_seconds": 13.574013490986545,
+  "external": [
+    {
+      "label": "MaxPosteriorSampling",
+      "module": "botorch.generation.sampling",
+      "symbol": "MaxPosteriorSampling",
+      "available": true,
+      "reason": ""
+    }
+  ],
+  "performance_status": "refused_not_semantically_comparable",
+  "performance_refusal": "No shared public execution graph exposes the same FortBO state and utility as the named external API; timing it would compare different algorithms or hidden posterior work.",
+  "values": {
+    "indices": [
+      1,
+      0
+    ]
+  },
+  "oracle": "independent frozen-realization arg-min",
+  "output_tail": "test_thompson                              PASS       0.01s\nSummary: 1 passed, 0 failed, 0 skipped (  0.01s)\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo build [--------------------] 0/797 0%\nfo build [#####---------------] 205/797 25%\nfo build [#####---------------] 207/797 25%\nfo build [#####---------------] 209/797 26%\nfo build [#####---------------] 216/797 27%\nfo build [#####---------------] 218/797 27%\nfo build [#########-----------] 366/797 45%\nfo build [###########---------] 450/797 56%\nfo build [#################---] 698/797 87%\nfo build [####################] 797/797 100%\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo test [--------------------] 0/1 0%\nfo test [####################] 1/1 100%\nfo: found blas package: openblas\nfo: found blas package: openblas\n",
+  "fixture": "/mnt/storage/code/lazy-fortran/fortbo-bench/fixtures/oracle_lane_thompson.json"
+}

@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "lane": "entropy",
+  "fortbo_revision": "b094bc1daa8b10eaee2ad5f8211cd7d09264fcff",
+  "tests": [
+    "test_entropy"
+  ],
+  "fortbo_status": "pass",
+  "fortbo_test_seconds": 5.056855850969441,
+  "external": [
+    {
+      "label": "qMES",
+      "module": "botorch.acquisition.max_value_entropy_search",
+      "symbol": "qMaxValueEntropy",
+      "available": true,
+      "reason": ""
+    }
+  ],
+  "performance_status": "refused_not_semantically_comparable",
+  "performance_refusal": "No shared public execution graph exposes the same FortBO state and utility as the named external API; timing it would compare different algorithms or hidden posterior work.",
+  "values": {
+    "entropy": [
+      0.032644172084782055,
+      1.4189385332046727,
+      2.112085713764618
+    ]
+  },
+  "oracle": "independent Gaussian entropy identity",
+  "output_tail": "test_entropy                               PASS       0.03s\nSummary: 1 passed, 0 failed, 0 skipped (  0.03s)\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo build [--------------------] 0/797 0%\nfo build [##################--] 736/797 92%\nfo build [####################] 797/797 100%\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo test [--------------------] 0/1 0%\nfo test [####################] 1/1 100%\nfo: found blas package: openblas\nfo: found blas package: openblas\n",
+  "fixture": "/mnt/storage/code/lazy-fortran/fortbo-bench/fixtures/oracle_lane_entropy.json"
+}

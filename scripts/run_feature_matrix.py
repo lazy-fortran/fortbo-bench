@@ -12,6 +12,7 @@ from __future__ import annotations
 import csv
 import importlib
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -43,6 +44,10 @@ def row(module: str, feature: str, comparability: str, oracle: str,
         "oracle": oracle,
         "benchmark_command": command,
         "performance_target": target,
+        "performance_status": (
+            "speed-gated" if comparability in {"direct-external", "external-policy"}
+            else "typed-refusal" if comparability == "oracle-plus-api"
+            else "oracle-or-contract"),
         "status": "ready" if not requirements or all(
             item["available"] for item in requirements) else "external-unavailable",
     }
@@ -63,8 +68,8 @@ CATALOG = [
         "reference-only", "direct NumPy variance and classification definitions",
         "python scripts/run_benchmark.py"),
     row("fortbo_batch", "qEI, qNEI, qUCB",
-        "direct-external", "frozen joint-draw order-statistic oracle plus BoTorch q-acquisitions",
-        "python scripts/run_batch_comparison.py",
+        "oracle-plus-api", "frozen joint-draw order-statistic oracle plus BoTorch API availability",
+        "python scripts/run_oracle_lane.py batch",
         [("qEI", "botorch.acquisition.monte_carlo", "qExpectedImprovement"),
          ("qNEI", "botorch.acquisition.monte_carlo", "qNoisyExpectedImprovement"),
          ("qUCB", "botorch.acquisition.monte_carlo", "qUpperConfidenceBound")],
@@ -84,8 +89,8 @@ CATALOG = [
         "fo test --all; python scripts/run_speed_comparison.py",
         [("BoTorch trust-region baseline", "botorch.generation.sampling", "ConstrainedMaxPosteriorSampling")]),
     row("fortbo_entropy", "max-value entropy search",
-        "direct-external", "numerical entropy integral plus BoTorch qMES",
-        "python scripts/run_entropy_comparison.py",
+        "oracle-plus-api", "independent Gaussian entropy oracle plus BoTorch qMES API availability",
+        "python scripts/run_oracle_lane.py entropy",
         [("qMES", "botorch.acquisition.max_value_entropy_search", "qMaxValueEntropy")]),
     row("fortbo_feasible", "feasibility filtering and incumbent bookkeeping",
         "reference-only", "brute-force feasible scan and failure/unknown separation",
@@ -111,8 +116,8 @@ CATALOG = [
         "reference-only", "independent quadrature/Monte Carlo utility definitions",
         "fo test test_integrated test_risk"),
     row("fortbo_knowledge_gradient", "sequential and batch knowledge gradient",
-        "direct-external", "independent envelope/Monte Carlo oracle plus BoTorch qKG",
-        "python scripts/run_kg_comparison.py",
+        "oracle-plus-api", "independent envelope/Monte Carlo oracle plus BoTorch qKG API availability",
+        "python scripts/run_oracle_lane.py knowledge_gradient",
         [("qKG", "botorch.acquisition.knowledge_gradient", "qKnowledgeGradient")],
         "FortBO wall time <= BoTorch after value gate"),
     row("fortbo_linear_posterior", "linear posterior contract",
@@ -139,12 +144,12 @@ CATALOG = [
         "external-policy", "pinned deterministic traces and objective-order oracle",
         "python scripts/record_fortbo_ordering.py"),
     row("fortbo_pareto", "Pareto archive and hypervolume",
-        "direct-external", "brute-force dominance/hypervolume plus BoTorch qNEHVI",
-        "python scripts/run_multiobjective_comparison.py",
+        "oracle-plus-api", "analytic ZDT front/dominance oracle plus BoTorch qNEHVI API availability",
+        "python scripts/run_oracle_lane.py pareto",
         [("qNEHVI", "botorch.acquisition.multi_objective.monte_carlo", "qNoisyExpectedHypervolumeImprovement")]),
     row("fortbo_pes", "predictive entropy search C1/C2/C3",
-        "direct-external", "paper-definition quadrature/EP constraints plus BoTorch qPES",
-        "python scripts/run_pes_comparison.py",
+        "oracle-plus-api", "paper-definition quadrature/EP constraints plus BoTorch qPES API availability",
+        "python scripts/run_oracle_lane.py pes",
         [("qPES", "botorch.acquisition.predictive_entropy_search", "qPredictiveEntropySearch")]),
     row("fortbo_placement", "derivative-bearing device placement refusals",
         "device-contract", "capability matrix and named refusal reasons",
@@ -180,8 +185,8 @@ CATALOG = [
         "direct-external", "independent output-wise posterior and covariance oracle",
         "fo test test_structured; python scripts/run_benchmark.py"),
     row("fortbo_thompson", "joint posterior Thompson batches",
-        "direct-external", "frozen joint draws and without-replacement arg-min oracle",
-        "fo test test_thompson; python scripts/run_thompson_comparison.py",
+        "oracle-plus-api", "frozen joint draws and without-replacement arg-min oracle plus BoTorch sampler API availability",
+        "python scripts/run_oracle_lane.py thompson",
         [("qPosteriorSampling", "botorch.generation.sampling", "MaxPosteriorSampling")]),
     row("fortbo_trace", "TuRBO/DTuRBO trace and ratio diagnostics",
         "reference-only", "reconstructed radius/counter/ratio state transitions",
@@ -214,6 +219,14 @@ def main() -> int:
     if missing or extra:
         print(json.dumps({"missing": missing, "extra": extra}, indent=2))
         return 1
+    missing_commands = []
+    for item in CATALOG:
+        for script in re.findall(r"scripts/([^ ;]+\.py)", item["benchmark_command"]):
+            if not (ROOT / "scripts" / script).exists():
+                missing_commands.append(script)
+    if missing_commands:
+        print(json.dumps({"missing_commands": sorted(set(missing_commands))}, indent=2))
+        return 1
 
     payload = {
         "schema": 1,
@@ -226,6 +239,8 @@ def main() -> int:
             "direct_or_external_policy": sum(
                 item["comparability"] in {"direct-external", "external-policy"}
                 for item in CATALOG),
+            "oracle_plus_api": sum(
+                item["comparability"] == "oracle-plus-api" for item in CATALOG),
             "reference_or_contract_only": sum(
                 item["comparability"] not in {"direct-external", "external-policy"}
                 for item in CATALOG),
@@ -240,7 +255,7 @@ def main() -> int:
     with csv_path.open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=[
             "module", "feature", "comparability", "status", "oracle",
-            "benchmark_command", "performance_target",
+            "benchmark_command", "performance_target", "performance_status",
         ], lineterminator="\n")
         writer.writeheader()
         for item in CATALOG:

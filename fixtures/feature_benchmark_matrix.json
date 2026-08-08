@@ -13,6 +13,7 @@
       "oracle": "independent integration and replay suite",
       "benchmark_command": "fo test --all",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -53,6 +54,7 @@
       "oracle": "NumPy definitions plus BoTorch analytic values",
       "benchmark_command": "python scripts/run_acquisition_speed.py",
       "performance_target": "FortBO wall time <= BoTorch after value gate",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -64,13 +66,14 @@
       "oracle": "direct NumPy variance and classification definitions",
       "benchmark_command": "python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
       "module": "fortbo_batch",
       "feature": "qEI, qNEI, qUCB",
       "source": "../fortbo/src/fortbo_batch.f90",
-      "comparability": "direct-external",
+      "comparability": "oracle-plus-api",
       "external": [
         {
           "label": "qEI",
@@ -94,9 +97,10 @@
           "reason": ""
         }
       ],
-      "oracle": "frozen joint-draw order-statistic oracle plus BoTorch q-acquisitions",
-      "benchmark_command": "python scripts/run_batch_comparison.py",
+      "oracle": "frozen joint-draw order-statistic oracle plus BoTorch API availability",
+      "benchmark_command": "python scripts/run_oracle_lane.py batch",
       "performance_target": "FortBO wall time <= BoTorch after Monte Carlo tolerance gate",
+      "performance_status": "typed-refusal",
       "status": "ready"
     },
     {
@@ -108,6 +112,7 @@
       "oracle": "known optima, dense/local scans, and independent Richardson gradients",
       "benchmark_command": "python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -127,6 +132,7 @@
       "oracle": "independent constrained-acquisition definition and BoTorch constraint objective",
       "benchmark_command": "python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -138,6 +144,7 @@
       "oracle": "bit-identical host/device result, repeated-launch determinism, typed refusal",
       "benchmark_command": "fo test test_device",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -157,13 +164,14 @@
       "oracle": "known-function regret, derivative oracle, ratio/trace invariants",
       "benchmark_command": "fo test --all; python scripts/run_speed_comparison.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
       "module": "fortbo_entropy",
       "feature": "max-value entropy search",
       "source": "../fortbo/src/fortbo_entropy.f90",
-      "comparability": "direct-external",
+      "comparability": "oracle-plus-api",
       "external": [
         {
           "label": "qMES",
@@ -173,9 +181,10 @@
           "reason": ""
         }
       ],
-      "oracle": "numerical entropy integral plus BoTorch qMES",
-      "benchmark_command": "python scripts/run_entropy_comparison.py",
+      "oracle": "independent Gaussian entropy oracle plus BoTorch qMES API availability",
+      "benchmark_command": "python scripts/run_oracle_lane.py entropy",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "typed-refusal",
       "status": "ready"
     },
     {
@@ -187,6 +196,7 @@
       "oracle": "brute-force feasible scan and failure/unknown separation",
       "benchmark_command": "fo test test_feasible; python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -198,6 +208,7 @@
       "oracle": "known feasible optima and analytic ZDT fronts",
       "benchmark_command": "fo test test_fixtures; python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -217,6 +228,7 @@
       "oracle": "independent augmented covariance GP plus GPyTorch/BoTorch posterior",
       "benchmark_command": "fo test test_fortml_adapter test_cross_framework; python scripts/emit_reference.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -236,6 +248,7 @@
       "oracle": "inducing-point NumPy posterior and GPyTorch variational contract",
       "benchmark_command": "fo test test_fortml_sparse; python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -247,6 +260,7 @@
       "oracle": "independent quadrature and finite-difference gates",
       "benchmark_command": "fo test test_generated_kernels test_acquisition",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -258,6 +272,7 @@
       "oracle": "restored-state replay and brute-force incumbent reconstruction",
       "benchmark_command": "fo test test_history test_workers",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -269,13 +284,14 @@
       "oracle": "independent quadrature/Monte Carlo utility definitions",
       "benchmark_command": "fo test test_integrated test_risk",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
       "module": "fortbo_knowledge_gradient",
       "feature": "sequential and batch knowledge gradient",
       "source": "../fortbo/src/fortbo_knowledge_gradient.f90",
-      "comparability": "direct-external",
+      "comparability": "oracle-plus-api",
       "external": [
         {
           "label": "qKG",
@@ -285,9 +301,10 @@
           "reason": ""
         }
       ],
-      "oracle": "independent envelope/Monte Carlo oracle plus BoTorch qKG",
-      "benchmark_command": "python scripts/run_kg_comparison.py",
+      "oracle": "independent envelope/Monte Carlo oracle plus BoTorch qKG API availability",
+      "benchmark_command": "python scripts/run_oracle_lane.py knowledge_gradient",
       "performance_target": "FortBO wall time <= BoTorch after value gate",
+      "performance_status": "typed-refusal",
       "status": "ready"
     },
     {
@@ -299,6 +316,7 @@
       "oracle": "explicit affine posterior moments and samples",
       "benchmark_command": "fo test test_linear_posterior",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -310,6 +328,7 @@
       "oracle": "independent metric identities and charged failed evaluations",
       "benchmark_command": "fo test test_metrics; python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -321,6 +340,7 @@
       "oracle": "decode/rounding invariants and brute-force finite domain",
       "benchmark_command": "fo test test_mixed test_space",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -340,6 +360,7 @@
       "oracle": "frozen NumPy draws and estimator standard-error tolerance",
       "benchmark_command": "fo test test_monte_carlo; python scripts/run_acquisition_speed.py",
       "performance_target": "FortBO wall time <= BoTorch for matched q=1 estimators",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -351,6 +372,7 @@
       "oracle": "mpmath/Simpson normal integrals and tail identities",
       "benchmark_command": "fo test test_acquisition test_entropy",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -362,6 +384,7 @@
       "oracle": "known constrained minima and independent objective evaluations",
       "benchmark_command": "fo test test_optimize test_end_to_end",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -373,13 +396,14 @@
       "oracle": "pinned deterministic traces and objective-order oracle",
       "benchmark_command": "python scripts/record_fortbo_ordering.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
       "module": "fortbo_pareto",
       "feature": "Pareto archive and hypervolume",
       "source": "../fortbo/src/fortbo_pareto.f90",
-      "comparability": "direct-external",
+      "comparability": "oracle-plus-api",
       "external": [
         {
           "label": "qNEHVI",
@@ -389,16 +413,17 @@
           "reason": ""
         }
       ],
-      "oracle": "brute-force dominance/hypervolume plus BoTorch qNEHVI",
-      "benchmark_command": "python scripts/run_multiobjective_comparison.py",
+      "oracle": "analytic ZDT front/dominance oracle plus BoTorch qNEHVI API availability",
+      "benchmark_command": "python scripts/run_oracle_lane.py pareto",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "typed-refusal",
       "status": "ready"
     },
     {
       "module": "fortbo_pes",
       "feature": "predictive entropy search C1/C2/C3",
       "source": "../fortbo/src/fortbo_pes.f90",
-      "comparability": "direct-external",
+      "comparability": "oracle-plus-api",
       "external": [
         {
           "label": "qPES",
@@ -408,9 +433,10 @@
           "reason": ""
         }
       ],
-      "oracle": "paper-definition quadrature/EP constraints plus BoTorch qPES",
-      "benchmark_command": "python scripts/run_pes_comparison.py",
+      "oracle": "paper-definition quadrature/EP constraints plus BoTorch qPES API availability",
+      "benchmark_command": "python scripts/run_oracle_lane.py pes",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "typed-refusal",
       "status": "ready"
     },
     {
@@ -422,6 +448,7 @@
       "oracle": "capability matrix and named refusal reasons",
       "benchmark_command": "fo test test_placement",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -433,6 +460,7 @@
       "oracle": "independent scalar normal and two-by-two covariance oracle",
       "benchmark_command": "fo test test_posterior_contract",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -444,6 +472,7 @@
       "oracle": "pairwise probability and utility-order oracle",
       "benchmark_command": "fo test test_preference",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -455,6 +484,7 @@
       "oracle": "schema validation and no-zero-for-refusal invariant",
       "benchmark_command": "fo test test_provenance",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -466,6 +496,7 @@
       "oracle": "event-order replay and failed-attempt accounting",
       "benchmark_command": "fo test test_push test_workers",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -477,6 +508,7 @@
       "oracle": "enumerated active-set solution and KKT residual",
       "benchmark_command": "fo test test_quadratic test_dturbo_modes",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -488,6 +520,7 @@
       "oracle": "normal-tail formulas and frozen empirical quantiles",
       "benchmark_command": "fo test test_risk",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -499,6 +532,7 @@
       "oracle": "deterministic path-cost oracle and recorded ordering trace",
       "benchmark_command": "fo test test_rover; python scripts/run_speed_comparison.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -510,6 +544,7 @@
       "oracle": "round-trip/decode invariants and exhaustive finite-domain scan",
       "benchmark_command": "fo test test_space test_mixed",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -521,6 +556,7 @@
       "oracle": "boundary truth table and priority-order oracle",
       "benchmark_command": "fo test test_stopping",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -532,13 +568,14 @@
       "oracle": "independent output-wise posterior and covariance oracle",
       "benchmark_command": "fo test test_structured; python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
       "module": "fortbo_thompson",
       "feature": "joint posterior Thompson batches",
       "source": "../fortbo/src/fortbo_thompson.f90",
-      "comparability": "direct-external",
+      "comparability": "oracle-plus-api",
       "external": [
         {
           "label": "qPosteriorSampling",
@@ -548,9 +585,10 @@
           "reason": ""
         }
       ],
-      "oracle": "frozen joint draws and without-replacement arg-min oracle",
-      "benchmark_command": "fo test test_thompson; python scripts/run_thompson_comparison.py",
+      "oracle": "frozen joint draws and without-replacement arg-min oracle plus BoTorch sampler API availability",
+      "benchmark_command": "python scripts/run_oracle_lane.py thompson",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "typed-refusal",
       "status": "ready"
     },
     {
@@ -562,6 +600,7 @@
       "oracle": "reconstructed radius/counter/ratio state transitions",
       "benchmark_command": "fo test test_trace",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     },
     {
@@ -573,6 +612,7 @@
       "oracle": "paper constants, bounded geometry, and trace transitions",
       "benchmark_command": "fo test test_trust_region test_turbo",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -592,6 +632,7 @@
       "oracle": "known-function regret and Uber/BoTorch pinned baselines",
       "benchmark_command": "python scripts/run_turbo_baselines.py scripts/run_botorch_turbo.py",
       "performance_target": "FortBO regret no worse than the declared baseline at matched budget",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -603,6 +644,7 @@
       "oracle": "objective-count, restart, failure, and replay oracle",
       "benchmark_command": "fo test test_turbo_driver test_end_to_end",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "speed-gated",
       "status": "ready"
     },
     {
@@ -614,13 +656,15 @@
       "oracle": "deterministic event replay with charged failures",
       "benchmark_command": "fo test test_workers; python scripts/run_benchmark.py",
       "performance_target": "correctness and reproducibility",
+      "performance_status": "oracle-or-contract",
       "status": "ready"
     }
   ],
   "summary": {
     "features": 43,
-    "direct_or_external_policy": 19,
-    "reference_or_contract_only": 24,
+    "direct_or_external_policy": 13,
+    "oracle_plus_api": 6,
+    "reference_or_contract_only": 30,
     "external_requirements_unavailable": 0
   }
 }

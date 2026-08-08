@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "lane": "pareto",
+  "fortbo_revision": "b094bc1daa8b10eaee2ad5f8211cd7d09264fcff",
+  "tests": [
+    "test_pareto"
+  ],
+  "fortbo_status": "pass",
+  "fortbo_test_seconds": 5.281464622006752,
+  "external": [
+    {
+      "label": "qNEHVI",
+      "module": "botorch.acquisition.multi_objective.monte_carlo",
+      "symbol": "qNoisyExpectedHypervolumeImprovement",
+      "available": true,
+      "reason": ""
+    }
+  ],
+  "performance_status": "refused_not_semantically_comparable",
+  "performance_refusal": "No shared public execution graph exposes the same FortBO state and utility as the named external API; timing it would compare different algorithms or hidden posterior work.",
+  "values": {
+    "front_points": 11
+  },
+  "oracle": "analytic ZDT1 Pareto front",
+  "output_tail": "test_pareto                                PASS       0.21s\nSummary: 1 passed, 0 failed, 0 skipped (  0.21s)\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo build [--------------------] 0/797 0%\nfo build [##################--] 736/797 92%\nfo build [####################] 797/797 100%\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo: found blas package: openblas\nfo test [--------------------] 0/1 0%\nfo test [####################] 1/1 100%\nfo: found blas package: openblas\nfo: found blas package: openblas\n",
+  "fixture": "/mnt/storage/code/lazy-fortran/fortbo-bench/fixtures/oracle_lane_pareto.json"
+}
