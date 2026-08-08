@@ -31,9 +31,10 @@ non-comparable lane remains visible rather than being counted as a speed win.
 Hardware evidence is kept separately in
 [`hardware_benchmark.json`](fixtures/hardware_benchmark.json). The current CPU
 lane is complete on `faepkub4` (gfortran 12.2.0, OpenBLAS, 50/50 tests, all
-acquisition and ordering rows). The Slurm GPU lane is recorded as queued until
-an allocation starts; a Tesla T4 visible on a login node is not itself GPU
-benchmark evidence.
+acquisition and ordering rows). The Slurm GPU lane completed on `acluster`
+(`node34`, Tesla T4, CUDA device 0), but is a typed refusal: only gfortran
+12.2.0 with no accelerator backend is available, so the device contract passes
+without claiming GPU performance.
 
 ## Work packages
 
