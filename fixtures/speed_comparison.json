@@ -1,0 +1,125 @@
+{
+  "objective_note": "Speed is only a claim if the accuracy matches, so every row carries its objective value and no speedup is reported where the accuracy moved.",
+  "not_matched": "Surrogate hyperparameter fitting: both Python references refit with Adam every step, FortBO uses a fixed lengthscale. That favours FortBO on time and is stated rather than buried.",
+  "fortbo_modes": [
+    {
+      "problem": "ackley",
+      "budget": 16,
+      "n_initial": 5,
+      "regions": 1,
+      "seeds": 3,
+      "turbo1_value": 13.652794327914108,
+      "turbom_value": 13.652794327914108,
+      "random_value": 13.888652185145572,
+      "turbo1_seconds": 1.0064640000000002,
+      "turbom_seconds": 0.9956909999999999,
+      "random_seconds": 0.0002569999999999517
+    },
+    {
+      "problem": "ackley",
+      "budget": 60,
+      "n_initial": 10,
+      "regions": 1,
+      "seeds": 3,
+      "turbo1_value": 12.372675440886148,
+      "turbom_value": 12.372675440886148,
+      "random_value": 13.659061432807128,
+      "turbo1_seconds": 5.8558759999999985,
+      "turbom_seconds": 5.851466000000002,
+      "random_seconds": 0.0009460000000007796
+    },
+    {
+      "problem": "rover",
+      "budget": 22,
+      "n_initial": 4,
+      "regions": 2,
+      "seeds": 3,
+      "turbo1_value": 1331.053788414505,
+      "turbom_value": 1190.9647946773205,
+      "random_value": 1190.9647946773205,
+      "turbo1_seconds": 0.5207830000000002,
+      "turbom_seconds": 0.7498070000000001,
+      "random_seconds": 0.00040400000000007097
+    },
+    {
+      "problem": "rover",
+      "budget": 80,
+      "n_initial": 8,
+      "regions": 3,
+      "seeds": 3,
+      "turbo1_value": 865.5504483744259,
+      "turbom_value": 806.6675774878743,
+      "random_value": 1190.9647946773205,
+      "turbo1_seconds": 3.505361999999998,
+      "turbom_seconds": 5.354837,
+      "random_seconds": 0.0014649999999996055
+    },
+    {
+      "problem": "push",
+      "budget": 90,
+      "n_initial": 10,
+      "regions": 3,
+      "seeds": 3,
+      "turbo1_value": -3.3674730502376358,
+      "turbom_value": -2.7312491421925715,
+      "random_value": -1.6260205011954172,
+      "turbo1_seconds": 0.5693409999999999,
+      "turbom_seconds": 0.6133599999999999,
+      "random_seconds": 0.006472000000000033
+    }
+  ],
+  "ackley200_cross_implementation": [
+    {
+      "budget": 16,
+      "n_initial": 5,
+      "fortbo_seconds": 1.0064640000000002,
+      "fortbo_value": 13.652794327914108,
+      "uber_research_seconds": 17.68124965199968,
+      "uber_research_value": 13.690164775266926,
+      "botorch_seconds": 11.732161760039162,
+      "botorch_value": 13.382520880397704,
+      "verdicts": [
+        {
+          "against": "uber_research",
+          "speedup": 17.567692090327796,
+          "accuracy_comparable": true,
+          "at_least_as_fast": true,
+          "claim_supported": true
+        },
+        {
+          "against": "botorch",
+          "speedup": 11.656812126453762,
+          "accuracy_comparable": true,
+          "at_least_as_fast": true,
+          "claim_supported": true
+        }
+      ]
+    },
+    {
+      "budget": 60,
+      "n_initial": 10,
+      "fortbo_seconds": 5.8558759999999985,
+      "fortbo_value": 12.372675440886148,
+      "uber_research_seconds": 67.44012044399278,
+      "uber_research_value": 12.561403609073704,
+      "botorch_seconds": 55.10490309103625,
+      "botorch_value": 12.76972035797738,
+      "verdicts": [
+        {
+          "against": "uber_research",
+          "speedup": 11.516657873901838,
+          "accuracy_comparable": true,
+          "at_least_as_fast": true,
+          "claim_supported": true
+        },
+        {
+          "against": "botorch",
+          "speedup": 9.410189541417248,
+          "accuracy_comparable": true,
+          "at_least_as_fast": true,
+          "claim_supported": true
+        }
+      ]
+    }
+  ]
+}
