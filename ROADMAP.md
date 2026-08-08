@@ -28,6 +28,13 @@ performance target is per lane, hardware, and revision: FortBO must meet or
 beat the named comparator after the correctness gate. A missing or
 non-comparable lane remains visible rather than being counted as a speed win.
 
+Hardware evidence is kept separately in
+[`hardware_benchmark.json`](fixtures/hardware_benchmark.json). The current CPU
+lane is complete on `faepkub4` (gfortran 12.2.0, OpenBLAS, 50/50 tests, all
+acquisition and ordering rows). The Slurm GPU lane is recorded as queued until
+an allocation starts; a Tesla T4 visible on a login node is not itself GPU
+benchmark evidence.
+
 ## Work packages
 
 - [x] Create the MIT-licensed benchmark repository and provenance contract.

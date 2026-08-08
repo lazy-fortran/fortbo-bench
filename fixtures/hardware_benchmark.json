@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "fortbo_revision": "b094bc1",
+  "benchmark_revision": "7ab0488",
+  "cpu": {
+    "host": "faepkub4",
+    "compiler": "gfortran 12.2.0",
+    "blas": "openblas",
+    "device": "cpu",
+    "test_timeout_seconds": 60,
+    "full_suite": {
+      "status": "pass",
+      "tests": 50,
+      "wall_seconds": 217.7
+    },
+    "acquisition": {
+      "n_candidates": 4000,
+      "n_train": 40,
+      "n_samples": 128,
+      "dimension": 8,
+      "repeats": 5,
+      "rows": {
+        "posterior_moments": {"seconds": 0.016708676400594414, "value_sum": 1139.0308443582669},
+        "ei": {"seconds": 0.01999505280109588, "value_sum": 4.7835630510434015},
+        "log_ei": {"seconds": 0.022477659601055403, "value_sum": -389889.38613743964},
+        "pi": {"seconds": 0.02000013759825378, "value_sum": 20.810754479308244},
+        "ucb": {"seconds": 0.016000045600230807, "value_sum": 2708.1142627371414},
+        "mc_ei": {"seconds": 0.02399745899892878, "value_sum": 4.812908223634736},
+        "mc_pi": {"seconds": 0.023526272998424247, "value_sum": 20.6015625},
+        "mc_noisy_ei": {"seconds": 0.023812731599900872, "value_sum": 6.2017600729020534},
+        "mes": {"seconds": 0.007250046997796744, "value_sum": 26.008274624404123}
+      }
+    },
+    "ordering": {
+      "ackley": {"budget": 16, "n_initial": 5, "regions": 1, "seeds": 3,
+                 "turbo1": 13.652794327914108, "turbom": 13.652794327914108,
+                 "random": 13.888652185145572, "turbo1_seconds": 2.5756543110037455,
+                 "turbom_seconds": 2.5933703159971628, "random_seconds": 0.0009571650007274002},
+      "rover": {"budget": 80, "n_initial": 8, "regions": 3, "seeds": 3,
+                "turbo1": 865.5504483744259, "turbom": 806.6675774878743,
+                "random": 1190.9647946773205, "turbo1_seconds": 9.0919781679986045,
+                "turbom_seconds": 18.3682563869952, "random_seconds": 0.005651225001201965},
+      "push": {"budget": 90, "n_initial": 10, "regions": 3, "seeds": 3,
+               "turbo1": -3.3674730502376358, "turbom": -2.7312491421925715,
+               "random": -1.6260205011954172, "turbo1_seconds": 1.1519695789902471,
+               "turbom_seconds": 1.8578115179989254, "random_seconds": 0.02280606399051568}
+    }
+  },
+  "gpu": {
+    "host": "acluster",
+    "scheduler": "slurm",
+    "status": "queued",
+    "job_id": 20923973,
+    "note": "A Tesla T4 allocation was requested; no GPU timing is recorded until the job starts."
+  }
+}
