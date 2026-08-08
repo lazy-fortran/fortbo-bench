@@ -1,0 +1,37 @@
+{
+  "objective": "ackley",
+  "dimension": 200,
+  "lower": -5.0,
+  "upper": 10.0,
+  "seeds": [
+    101,
+    102,
+    103
+  ],
+  "reference": "BoTorch turbo_1, following the tutorial's structure",
+  "note": "A third implementation of the same algorithm. Agreement between independent implementations is evidence the specification was read the same way; disagreement is evidence it was not.",
+  "results": {
+    "matched": {
+      "budget": 16,
+      "n_initial": 5,
+      "median_best": 13.382520880397704,
+      "per_seed": [
+        13.382520880397704,
+        13.074590215421088,
+        13.62384573586011
+      ],
+      "median_wall_seconds": 11.732161760039162
+    },
+    "roomy": {
+      "budget": 60,
+      "n_initial": 10,
+      "median_best": 12.76972035797738,
+      "per_seed": [
+        12.76972035797738,
+        12.822873308919057,
+        12.33852962606242
+      ],
+      "median_wall_seconds": 55.10490309103625
+    }
+  }
+}

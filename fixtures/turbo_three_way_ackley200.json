@@ -1,0 +1,34 @@
+{
+  "objective": "ackley",
+  "dimension": 200,
+  "note": "Three independent implementations of TuRBO on the same closed-form objective, same box, same budget, same initial-design size, same seeds. This compares implementations, not methods: TuRBO is a specification with a lot of unstated detail, and agreement between independent readings of it is evidence the detail was read the same way.",
+  "caveat": "Surrogate fitting differs and is not matched: both Python references fit GP hyperparameters every step, FortBO runs a fixed lengthscale. Any gap belongs to that difference before it belongs to the trust-region logic.",
+  "matched_budget": {
+    "budget": 16,
+    "n_initial": 5,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "fortbo_turbo1": 13.652794327914108,
+    "uber_research_turbo1": 13.690164775266926,
+    "botorch_turbo1": 13.382520880397704,
+    "fortbo_random": 13.888652185145572,
+    "uber_research_random": 13.94280181093756
+  },
+  "roomy_budget": {
+    "budget": 60,
+    "n_initial": 10,
+    "seeds": [
+      101,
+      102,
+      103
+    ],
+    "uber_research_turbo1": 12.561403609073704,
+    "uber_research_turbo5": 13.50707888047409,
+    "botorch_turbo1": 12.76972035797738,
+    "uber_research_random": 13.52577705912361,
+    "comment": "At this budget the authors' own code has TuRBO-1 ahead of TuRBO-5, with TuRBO-5 barely ahead of random. FortBO shows the same ordering. The paper's advantage for several regions comes from thousands of evaluations, not tens."
+  }
+}
