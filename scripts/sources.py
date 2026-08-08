@@ -185,6 +185,23 @@ PAPERS: tuple[Paper, ...] = (
 
 REPOSITORIES: tuple[Repository, ...] = (
     Repository(
+        key="push-reference",
+        url="https://github.com/zi-w/Ensemble-Bayesian-Optimization",
+        ref="master",
+        licence="read only; not vendored, not ported",
+        needed_for=(
+            "The 14D robot pushing problem itself. The TuRBO paper does not "
+            "define it -- its README points here and lists the three changes "
+            "it made (visualization off, the 0.01 observation noise reduced to "
+            "1e-6, and the sign flipped for minimization). Without this we "
+            "would not know the parameter layout, the object and hand radii, "
+            "the simulation duration, or that the reward is the distance the "
+            "objects end from their targets. Every one of those is a number "
+            "no derivation supplies."
+        ),
+        consumed_by=("fortbo/src/fortbo_push.f90",),
+    ),
+    Repository(
         key="turbo-reference",
         url="https://github.com/uber-research/TuRBO",
         ref="master",
