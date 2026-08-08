@@ -1,0 +1,66 @@
+{
+  "objective": "ackley",
+  "dimension": 200,
+  "lower": -5.0,
+  "upper": 10.0,
+  "seeds": [
+    101,
+    102,
+    103
+  ],
+  "reference": "uber-research/TuRBO, unmodified, at the pinned commit",
+  "caveat": "The reference fits GP hyperparameters with Adam each step; FortBO uses a fixed lengthscale. That difference is real and is the main expected source of any gap, so it must not be attributed to the trust-region logic under comparison.",
+  "results": {
+    "matched": {
+      "turbo-1": {
+        "median_best": 13.690164775266926,
+        "per_seed": [
+          14.074044664963838,
+          13.690164775266926,
+          13.644028384925466
+        ],
+        "median_wall_seconds": 17.68124965199968
+      },
+      "random": {
+        "median_best": 13.94280181093756,
+        "per_seed": [
+          13.85935832587526,
+          14.026645448529534,
+          13.94280181093756
+        ]
+      },
+      "budget": 16,
+      "n_initial": 5
+    },
+    "roomy": {
+      "turbo-1": {
+        "median_best": 12.561403609073704,
+        "per_seed": [
+          13.070886232359719,
+          12.561403609073704,
+          12.309886645535745
+        ],
+        "median_wall_seconds": 67.44012044399278
+      },
+      "turbo-5": {
+        "median_best": 13.50707888047409,
+        "per_seed": [
+          13.615135288852988,
+          13.50707888047409,
+          13.28704401466605
+        ],
+        "median_wall_seconds": 63.01408107299358
+      },
+      "random": {
+        "median_best": 13.52577705912361,
+        "per_seed": [
+          13.784412137518599,
+          13.489818692350166,
+          13.52577705912361
+        ]
+      },
+      "budget": 60,
+      "n_initial": 10
+    }
+  }
+}
