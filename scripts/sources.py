@@ -135,6 +135,36 @@ PAPERS: tuple[Paper, ...] = (
             "fortbo/src/fortbo_fixtures.f90",
         ),
     ),
+    Paper(
+        key="student-t-process",
+        arxiv_id="1402.4306",
+        title="Student-t Processes as Alternatives to Gaussian Processes",
+        needed_for=(
+            "The Student-t process: its predictive marginals, the degrees-of-"
+            "freedom update on conditioning, and the claim about which of its "
+            "properties actually differ from a GP's. FortML implements it as a "
+            "generic model; FortBO only adapts it."
+        ),
+        consumed_by=("fortml/src/gp/fortml_student_t_process.f90",),
+    ),
+    Paper(
+        key="svgp",
+        arxiv_id="1309.6835",
+        title="Gaussian Processes for Big Data",
+        needed_for=(
+            "The stochastic variational sparse GP whose predictive marginals "
+            "FortBO's sparse adapter presents, and the sense in which its "
+            "variance is not the exact posterior's."
+        ),
+        consumed_by=("fortbo/src/fortbo_fortml_sparse.f90",),
+    ),
+    # Heteroscedastic GP regression (Lazaro-Gredilla and Titsias, ICML 2011)
+    # has no arXiv posting, so it cannot be fetched here. Recorded rather than
+    # replaced with a guessed identifier: an arXiv id that resolves to *some*
+    # PDF is worse than none, because it looks fetched. An earlier revision of
+    # this file carried a guessed id that resolved to an unrelated Technical
+    # Physics Letters article, which is why `fetch_provenance.py` now verifies
+    # the title of what it downloads.
 )
 
 

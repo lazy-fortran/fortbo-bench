@@ -91,7 +91,42 @@ def fetch_paper(paper: Paper, force: bool) -> dict:
     text = extract_text(pdf)
     if text is not None:
         record["text"] = str(text.relative_to(PROVENANCE))
+        # A wrong identifier still returns a perfectly valid PDF, so the only
+        # way to know the right paper arrived is to look at it. Checking a few
+        # distinctive title words against the opening page catches a
+        # transcribed or guessed id, which is otherwise discovered much later
+        # by someone reading the "wrong" paper and concluding the code is wrong.
+        matched, opening = title_matches(paper.title, text)
+        record["title_verified"] = matched
+        if not matched:
+            record["status"] = "mismatched"
+            record["error"] = (
+                "the downloaded document does not look like the stated title; "
+                "opening text: " + opening
+            )
+            log(f"    TITLE MISMATCH: got {opening!r}")
     return record
+
+
+def title_matches(expected: str, text: Path) -> tuple[bool, str]:
+    """Whether the fetched document's opening page carries the expected title.
+
+    Deliberately loose: PDFs break titles across lines and mangle ligatures, so
+    an exact match would reject correct fetches. Requiring most of the
+    distinctive words is enough to separate the right paper from a different
+    one.
+    """
+    try:
+        opening = text.read_text(errors="replace")[:4000]
+    except OSError:
+        return True, ""
+    flattened = " ".join(opening.lower().split())
+    words = [w for w in expected.lower().split() if len(w) > 3]
+    if not words:
+        return True, ""
+    hits = sum(1 for word in words if word in flattened)
+    preview = " ".join(opening.split())[:120]
+    return hits >= max(1, (2 * len(words)) // 3), preview
 
 
 def extract_text(pdf: Path) -> Path | None:
